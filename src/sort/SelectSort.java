@@ -14,6 +14,7 @@ public class SelectSort {
                 if(arr[j]<arr[minIndex]){
                     minIndex=j;
                 }
+
             }
             if(i!=minIndex){
                 swap(arr,i,minIndex);
