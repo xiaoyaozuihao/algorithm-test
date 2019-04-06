@@ -86,9 +86,9 @@ public class BaseUtil {
 //        arr[i] ^= arr[j];
     }
 
-    public static void testTemplate(String className) {
+    public static void testTemplate(String className,String methodName) {
         //定义测试次数
-        int times=1000;
+        int times=10000;
         int maxSize=100;
         int maxValue=30;
         boolean succeed=true;
@@ -96,7 +96,7 @@ public class BaseUtil {
             int[] arr = generateRandomArray(maxSize, maxValue);
             int[] arr1=copyArray(arr);
             int[] arr2=copyArray(arr);
-            invokeMethod(className, arr1);
+            invokeMethod(className,methodName, arr1);
             comparator(arr2);
             if(!isEqual(arr2,arr1)){
                 succeed=false;
@@ -107,15 +107,14 @@ public class BaseUtil {
         System.out.println(succeed?"nice":"oh no!");
         int[] arr=generateRandomArray(maxSize,maxValue);
         printArray(arr);
-        invokeMethod(className, arr);
+        invokeMethod(className,methodName, arr);
         printArray(arr);
     }
 
-    private static void invokeMethod(String className, int[] arr1) {
+    private static void invokeMethod(String className,String methodName, int[] arr1) {
         try {
             Class<?> clazz = Class.forName(className);
             Object obj = clazz.newInstance();
-            String methodName= className.substring(0, 1).toLowerCase() + className.substring(1);
             Method method = clazz.getMethod(methodName, int[].class);
             method.invoke(obj,arr1);
         } catch (Exception e) {
@@ -124,7 +123,8 @@ public class BaseUtil {
     }
 
     public static void main(String[] args) {
-        testTemplate("BubbleSort");
-        testTemplate("SelectSort");
+        testTemplate("InsertSort","insertSort");
+        testTemplate("InsertSort","insertSort1");
+        testTemplate("InsertSort","insertSort2");
     }
 }
