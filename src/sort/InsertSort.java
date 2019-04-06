@@ -15,34 +15,43 @@ public class InsertSort {
                 }
             }
         }
-
     }
     public static void insertSort1(int[] arr){
         if(arr==null||arr.length<2){
             return ;
         }
-        for(int i=1;i<arr.length;i++){
-            for(int j=i-1;j>=0;j--){
+        for(int i=1;i<arr.length;i++){//外层循环定义遍历次数n-1
+            for(int j=i-1;j>=0;j--){//内层循环从目标元素的前一个元素向前遍历，比较并交换
                 if(arr[j]>arr[j+1]){
                     BaseUtil.swap(arr,j,j+1);
                 }
             }
         }
     }
+    //此版本减少交换次数
     public static void insertSort2(int[] arr){
         if(arr==null||arr.length<2){
             return;
         }
-        for(int i=1;i<arr.length;i++){
+        for(int i=1;i< arr.length;i++){
             int temp=arr[i];
             int j;
-            for(j=i-1;j>=0;j--){
-                if(arr[j]>temp){
-                    arr[j+1]=arr[j];
-                }
+            for(j=i-1;j>=0&&arr[j]>temp;j--){//如果前面的元素大于目标值，就向后移动一位。
+                arr[j+1]=arr[j];
             }
-            arr[j+1]=temp;
+            arr[j+1]=temp;//如果前面的元素小于目标值，就将目标值赋给这个元素的下一个元素。
         }
+
+        //while循环版本
+//        for(int i=1;i<arr.length;i++){
+//            int temp=arr[i];
+//            int j =i-1;
+//            while (j>=0&&arr[j]>temp){
+//                arr[j+1]=arr[j];
+//                j--;
+//            }
+//            arr[j+1]=temp;
+//        }
     }
 
 }
