@@ -27,7 +27,7 @@ public class BaseUtil {
         int[] arr =new int[(int)(Math.random()*(maxSize+1))];//生成[0,maxSize]范围的整数
         for(int i=0;i<arr.length;i++){
             //生成每个位置的数，范围是[-maxValue,maxValue]
-            arr[i]=(int)(Math.random()*(maxValue+1))-(int)(Math.random()*(maxValue));
+            arr[i]=(int)(Math.random()*(2*maxValue+1))-maxValue;
         }
         return arr;
     }
@@ -63,6 +63,13 @@ public class BaseUtil {
     }
     //定义打印数组的方法
     public static void printArray(int[] arr){
+        if(arr==null){
+            return;
+        }
+        if(arr.length==0){
+            System.out.println("[]");
+            return;
+        }
         StringBuilder sb=new StringBuilder();
         sb.append("[");
         for(int i=0;i<arr.length;i++){
