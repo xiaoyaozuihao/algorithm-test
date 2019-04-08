@@ -40,7 +40,7 @@ public class HeapSort {
         }
     }
 
-    private static void heapInsert(int[] arr, int i) {
+    private static void heapInsert(int[] arr, int i) {//就是和父节点进行比较
         while (arr[i] > arr[(i - 1) / 2]) {//此循环的时间复杂度只和堆的高度有关，所以为logN
             BaseUtil.swap(arr, i, (i - 1) / 2);
             i = (i - 1) / 2;

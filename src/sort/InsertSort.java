@@ -36,10 +36,12 @@ public class InsertSort {
         for(int i=1;i< arr.length;i++){
             int temp=arr[i];
             int j;
-            for(j=i-1;j>=0&&arr[j]>temp;j--){//如果前面的元素大于目标值，就向后移动一位。
+            //如果前面的元素大于目标值，就向后移动一位，同时指针减一
+            //如果前面的元素小于等于目标值，跳出循环，由于每次循环减1，所以是j+1和temp交换
+            for(j=i-1;j>=0&&arr[j]>temp;j--){
                 arr[j+1]=arr[j];
             }
-            arr[j+1]=temp;//如果前面的元素小于目标值，就将目标值赋给这个元素的下一个元素。
+            arr[j+1]=temp;//如果第一次就跳出循环，实际上位置没动。
         }
 
         //while循环版本
