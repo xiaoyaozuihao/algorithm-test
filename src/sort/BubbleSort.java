@@ -5,15 +5,17 @@
  * @date 2019/3/31
  */
 public class BubbleSort {
+    //冒泡排序外层循环每次会选出一个最大值或最小值，n个数需要进行n-1次循环
+    //内层循环相邻两个数进行比较，n个数需要进行n-i次比较，大值向后移动或小值向前移动，
     public static void bubbleSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
         }
-        //冒泡排序每次会选出最大值放到末尾，小值就象冒泡一样一点点向前跑，n个数需要进行n-1次循环
-        for (int end = arr.length - 1; end > 0; end--) {
-            for (int i = 0; i < end; i++) {
+        //外层递减实现
+        for (int e = arr.length - 1; e > 0; e--) {
+            for (int i = 0; i < e; i++) {
                 if (arr[i] > arr[i + 1]) {
-                    swap(arr, i, i + 1);
+                    BaseUtil.swap(arr, i, i + 1);
                 }
             }
         }
@@ -23,19 +25,14 @@ public class BubbleSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        //n个数排序，需要进行n-1趟排序，每趟排序要进行n-i次比较
-        for (int i = 1; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - i; j++) {
+        //外层递增实现
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    swap(arr, j, j + 1);
+                    BaseUtil.swap(arr, j, j + 1);
                 }
             }
         }
     }
 
-    private static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
 }
