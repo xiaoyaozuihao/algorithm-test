@@ -8,7 +8,6 @@ public class HeapSort {
     //1.将数组转换成大根堆
     //2.弹出堆顶元素，将最后一个元素放到堆顶，进行heapify操作。
     //3.循环第二步，弹出的元素就是排好序的
-
     public static void heapSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;

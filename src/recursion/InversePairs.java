@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * 逆序对问题
  * 设 A 为一个有 n 个数字的有序集 (n>1)，其中所有数字各不相同。
@@ -33,15 +31,15 @@ public class InversePairs {
         int i=0;
         int p1=l;
         int p2=mid+1;
-        while (p1<=mid&p2<=r){
+        while (p1<=mid&&p2<=r){
             if(arr[p1]>arr[p2]){//说明左边的元素都大于右边的元素，形成逆序对
-                for(int j=p2;j<=r;j++){
-                    System.out.println("<"+arr[p1]+","+arr[j]+">");
+                for(int j=p1;j<=mid;j++){//左边最小的都大于右边，所以左边到mid为止的数都大于右边，循环打印所有结果
+                    System.out.println("<"+arr[j]+","+arr[p2]+">");
                 }
-                count+=(r-p2+1);
-                help[i++]=arr[p1++];
-            }else{
+                count+=(mid-p1+1);
                 help[i++]=arr[p2++];
+            }else{
+                help[i++]=arr[p1++];
             }
         }
         while(p1<=mid){
@@ -56,17 +54,21 @@ public class InversePairs {
     }
 
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        while (sc.hasNext()){
-            String[] split = sc.nextLine().split(",");
-            int[] num=new int[split.length];
-            for(int i=0;i<split.length;i++){
-                num[i]=Integer.parseInt(split[i]);
-            }
-            inversePairs(num);
-            System.out.println(count);
-        }
-        sc.close();
-
+//        Scanner sc=new Scanner(System.in);
+//        while (sc.hasNext()){
+//            String[] split = sc.nextLine().split(",");
+//            int[] num=new int[split.length];
+//            for(int i=0;i<split.length;i++){
+//                num[i]=Integer.parseInt(split[i]);
+//            }
+//            inversePairs(num);
+//            System.out.println(count);
+//        }
+//        sc.close();
+//        int[] array = BaseUtil.generateRandomArray(10, 10);
+        int[] array=new int[]{1,-1,10,4,-6,1};
+        BaseUtil.printArray(array);
+        inversePairs(array);
+        BaseUtil.printArray(array);
     }
 }

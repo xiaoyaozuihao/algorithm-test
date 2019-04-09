@@ -12,9 +12,6 @@ public class MergeSort {
     }
 
     private static void sortProcess(int[] arr, int L, int R) {
-        if(L==R){
-            return ;
-        }
         int mid = L+((R-L)>>1);//二分求中位数，这种写法可以避免越界
         //拆成两个子过程递归
         sortProcess(arr,L,mid);
