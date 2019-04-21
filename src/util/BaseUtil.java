@@ -112,10 +112,10 @@ public class BaseUtil {
             }
         }
         System.out.println(succeed?"nice":"oh no!");
-        int[] arr=generateRandomArray(maxSize,maxValue);
-        printArray(arr);
-        invokeMethod(className,methodName, arr);
-        printArray(arr);
+//        int[] arr=generateRandomArray(maxSize,maxValue);
+//        printArray(arr);
+//        invokeMethod(className,methodName, arr);
+//        printArray(arr);
     }
 
     private static void invokeMethod(String className,String methodName, int[] arr1) {
