@@ -9,46 +9,45 @@ import java.util.Stack;
  */
 public class StackAndQueueConvert {
     public static class TwoQueuesStack {
-        private Queue<Integer> queue;
-        private Queue<Integer> help;
+        private Queue<Integer> dataQueue;
+        private Queue<Integer> helpQueue;
         public TwoQueuesStack(){
-            queue =new LinkedList<>();
-            help=new LinkedList<>();
+            dataQueue=new LinkedList<>();
+            helpQueue=new LinkedList<>();
         }
         public void push(int obj){
-            queue.add(obj);
-        }
-        public int pop(){
-            if(queue.isEmpty()){
-                throw new RuntimeException("your stack is empty");
-            }
-            while(queue.size()>1){
-                help.add(queue.poll());
-            }
-            int res= queue.poll();
-            swap();
-            return res;
+            dataQueue.add(obj);
         }
 
         public int peek(){
-            if(queue.isEmpty()){
-                throw new RuntimeException("your stack is empty");
+            if(dataQueue.isEmpty()){
+                throw new RuntimeException("the stack is empty");
             }
-            while(queue.size()!=1){
-                help.add(queue.poll());
+            while(dataQueue.size()!=1){
+                helpQueue.add(dataQueue.poll());
             }
-            int res= queue.poll();
-            help.add(res);
+            int res= dataQueue.poll();
+            helpQueue.add(res);
             swap();
             return res;
-
         }
-
+        public int pop(){
+            if(dataQueue.isEmpty()){
+                throw new RuntimeException("the stack is empty");
+            }
+            while(dataQueue.size()!=1){
+                helpQueue.add(dataQueue.poll());
+            }
+            int res=dataQueue.poll();
+            swap();
+            return res;
+        }
         public void swap(){
-            Queue tmp= queue;
-            queue =help;
-            help=tmp;
+            Queue<Integer> tmp=helpQueue;
+            helpQueue=dataQueue;
+            dataQueue=tmp;
         }
+
     }
 
     public static class TwoStacksQueue{
