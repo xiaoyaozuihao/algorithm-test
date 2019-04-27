@@ -14,41 +14,41 @@ public class PrintMatrixSpiralOrder {
         }
     }
 
-    private static void printEdge(int[][] m, int tr, int tc, int dr, int dc) {
+    public static void printEdge(int[][] m,int tr,int tc,int dr,int dc){
         if(tr==dr){
-            for(int i=tc;i<=dc;i++){
-                System.out.print(m[tr][i]+" ");
+            while(tc<=dc){
+                System.out.print(m[tr][tc++]+" ");
             }
         }else if(tc==dc){
-            for(int i=tr;i<=dr;i++){
-                System.out.print(m[i][tc]+" ");
+            while(tr<=dr){
+                System.out.print(m[tr++][tc]+" ");
             }
-        }else{
+        }else {
             int curC=tc;
             int curR=tr;
             while(curC!=dc){
-                System.out.print(m[tr][curC]+" ");
+                System.out.print(m[curR][curC]+" ");
                 curC++;
             }
             while(curR!=dr){
-                System.out.print(m[curR][dc]+" ");
+                System.out.print(m[curR][curC]+" ");
                 curR++;
             }
             while(curC!=tc){
-                System.out.print(m[dr][curC]+" ");
+                System.out.print(m[curR][curC]+" ");
                 curC--;
             }
             while(curR!=tr){
-                System.out.print(m[curR][tc]+" ");
+                System.out.print(m[curR][curC]+" ");
                 curR--;
             }
         }
     }
 
     public static void main(String[] args) {
-//        int[][] matrix=new int[][]{{1,2,3},{8,9,4},{7,6,5}};
-        int[][] matrix = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 },
-                { 13, 14, 15, 16 } };
+        int[][] matrix=new int[][]{{1},{8},{7}};
+//        int[][] matrix = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 },
+//                { 13, 14, 15, 16 } };
         spiralOrderPrint(matrix);
     }
 }
