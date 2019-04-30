@@ -26,7 +26,35 @@ public class CountSort {
         }
     }
 
+    public static int[] countSort1(int[] arr){
+        if(arr==null||arr.length<2){
+            return arr;
+        }
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            min=Math.min(arr[i],min);
+            max= Math.max(arr[i],max);
+        }
+        int[] bucket=new int[max-min+1];
+        for(int i=0;i<arr.length;i++){
+            bucket[arr[i]-min]++;
+        }
+        for(int j=1;j<bucket.length;j++){
+            bucket[j]=bucket[j-1]+bucket[j];
+        }
+        int[] res=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            int pos=--bucket[arr[i]-min];
+            res[pos]=arr[i];
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        BaseUtil.testTemplate("CountSort","countSort");
+//        BaseUtil.testTemplate("CountSort","countSort1");
+        int[] arr = {3, 4, 1, 2, 2};
+        int[] ints = countSort1(arr);
+        BaseUtil.printArray(ints);
     }
 }

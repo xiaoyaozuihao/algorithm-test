@@ -14,7 +14,7 @@ public class HeapSort {
             return;
         }
         //循环数据，将之变成大根堆,将每次循环的数添加到堆的最后，然后进行heapInsert的操作。
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++) {
             heapInsert(arr, i);
         }
         int heapSize = arr.length;

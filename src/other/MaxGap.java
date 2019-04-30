@@ -34,9 +34,9 @@ public class MaxGap {
         int res = 0;
         int lastMax = maxs[0];
         for (int i = 1; i <= len; i++) {
-            if(hasnum[i]){
+            if (hasnum[i]) {
                 res = Math.max(res, mins[i] - lastMax);
-                lastMax=maxs[i];
+                lastMax = maxs[i];
             }
         }
         return res;
