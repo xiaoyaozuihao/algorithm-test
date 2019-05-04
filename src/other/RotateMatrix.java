@@ -27,10 +27,29 @@ public class RotateMatrix {
         }
     }
 
+    public static void rotateMatrix1(int[][] matrix){
+        int row=matrix.length;
+        for(int layer=0;layer<row/2;layer++){
+            rotateLayer(matrix,layer,row);
+        }
+    }
+
+    private static void rotateLayer(int[][] m, int offset, int row) {
+        for(int pos=0;pos<row-1;pos++){
+            int temp=m[offset][offset+pos];
+            m[offset][offset+pos]=m[row-1-pos-offset][offset];
+            m[row-1-pos-offset][offset]=m[row-offset-1][row-1-pos-offset];
+            m[row-offset-1][row-1-pos-offset]=m[offset+pos][row-offset-1];
+            m[offset+pos][row-offset-1]=temp;
+        }
+    }
+
     public static void main(String[] args) {
         int[][] matrix=new int[][]{{1,2,3},{4,5,6},{7,8,9}};
         BaseUtil.printMatrix(matrix);
-        rotateMatrix(matrix);
+//        rotateMatrix(matrix);
+//        BaseUtil.printMatrix(matrix);
+        rotateMatrix1(matrix);
         BaseUtil.printMatrix(matrix);
     }
 }
