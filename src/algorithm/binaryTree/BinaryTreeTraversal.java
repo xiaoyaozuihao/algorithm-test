@@ -31,6 +31,7 @@ public class BinaryTreeTraversal {
         inOrderUnRecur(node);
         System.out.println();
         postOrderUnRecur(node);
+        postOrderUnRecur1(node);
     }
     public static void preOrderRecur(TreeNode node){
         if(node==null){
@@ -91,6 +92,7 @@ public class BinaryTreeTraversal {
             }
         }
     }
+    //双栈结构版本
     public static void postOrderUnRecur(TreeNode node){
         System.out.print("post-order:");
         if(node!=null){
@@ -112,6 +114,28 @@ public class BinaryTreeTraversal {
             }
         }
     }
+
+    //单栈版本
+    public static void postOrderUnRecur1(TreeNode head){
+        System.out.print("pos-order: ");
+        if (head != null) {
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(head);
+            TreeNode c ;
+            while (!stack.isEmpty()) {
+                c = stack.peek();//c代表栈顶元素
+                if (c.left != null && head != c.left && head != c.right) {
+                    stack.push(c.left);
+                } else if (c.right != null && head != c.right) {
+                    stack.push(c.right);
+                } else {
+                    System.out.print(stack.pop().val + " ");
+                    head = c;//head代表最近一次弹出并打印的节点
+                }
+            }
+        }
+    }
+
     //循环版本，非常巧妙，适用于三种遍历，且只需要向递归版本一样调整两行代码顺序即可
     public static List<Integer> postorderTraversal(TreeNode root){
         List<Integer> result=new ArrayList<>();

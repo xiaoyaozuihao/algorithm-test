@@ -105,6 +105,7 @@ public class SmallEqualBigLinkedList {
         }
         if(et!=null){
             et.next=bh;
+
         }
         return sh!=null?sh:eh!=null?eh:bh;
     }
