@@ -1,5 +1,7 @@
 package linkedList;
 
+import binaryTree.Node;
+
 import java.util.Stack;
 
 /**
@@ -9,14 +11,6 @@ import java.util.Stack;
  * @date 2019/4/30
  */
 public class IsPalindromeList {
-    public static class Node {
-        private int value;
-        private Node next;
-
-        public Node(int data) {
-            value = data;
-        }
-    }
 
     //all push stack,need n extra space
     public static boolean isPalindromeList(Node head) {

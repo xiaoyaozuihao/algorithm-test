@@ -1,5 +1,7 @@
 package linkedList;
 
+import binaryTree.Node;
+
 /**
  * 将单向链表按某值划分为左边小，中间相等，右边大的形式
  *
@@ -7,14 +9,6 @@ package linkedList;
  * @date 2019/5/2
  */
 public class SmallEqualBigLinkedList {
-    public static class Node {
-        private int value;
-        private Node next;
-
-        public Node(int data) {
-            value = data;
-        }
-    }
 
     public static Node listPartition1(Node head, int pivot) {
         if(head==null){

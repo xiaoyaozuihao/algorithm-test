@@ -1,19 +1,14 @@
 package linkedList;
 
+import binaryTree.Node;
+
 /**
  * 打印两个有序链表的公共部分
  * @author xuyh
  * @date 2019/5/2
  */
 public class PrintCommonPart {
-    public static class Node{
-        private int value;
-        private Node next;
-        public Node(int data){
-            value=data;
-        }
-    }
-    public static void printCommonPart(Node node1,Node node2){
+    public static void printCommonPart(Node node1, Node node2){
         while(node1!=null&&node2!=null){
             if(node1.value<node2.value){
                 node1=node1.next;

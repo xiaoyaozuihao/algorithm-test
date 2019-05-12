@@ -6,15 +6,6 @@ package binaryTree;
  * @date 2019/5/10
  */
 public class SuccessorNode {
-    public static class Node{
-        private int value;
-        private Node left;
-        private Node right;
-        private Node parent;
-        public Node(int data){
-            value=data;
-        }
-    }
     public static Node getSuccessorNode(Node node){
         if(node==null){
             return null;

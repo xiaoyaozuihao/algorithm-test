@@ -1,5 +1,7 @@
 package linkedList;
 
+import binaryTree.Node;
+
 /**
  * 反转链表
  *
@@ -7,14 +9,6 @@ package linkedList;
  * @date 2019/4/25
  */
 public class ReverseLinkedList {
-    public static class Node {
-        private int value;
-        private Node next;
-
-        public Node(int data) {
-            value = data;
-        }
-    }
 
     //单链表反转
     public static Node reverseList(Node head) {

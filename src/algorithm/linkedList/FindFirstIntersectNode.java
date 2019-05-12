@@ -1,19 +1,14 @@
 package linkedList;
 
+import binaryTree.Node;
+
 /**
  * 两个单链表相交的一系列问题
  * @author xuyh
  * @date 2019/5/3
  */
 public class FindFirstIntersectNode {
-    public static class  Node{
-        private int value;
-        private Node next;
-        public Node(int data){
-            value=data;
-        }
-    }
-    public static Node getIntersectNode(Node head1,Node head2){
+    public static Node getIntersectNode(Node head1, Node head2){
         if(head1==null||head2==null){
             return null;
         }

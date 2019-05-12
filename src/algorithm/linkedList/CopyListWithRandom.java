@@ -1,5 +1,7 @@
 package linkedList;
 
+import binaryTree.Node;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,15 +11,7 @@ import java.util.Map;
  * @date 2019/5/2
  */
 public class CopyListWithRandom {
-    public static class Node{
-        private int value;
-        private Node next;
-        private Node random;
-        public Node(int data){
-            value=data;
-        }
-    }
-    
+
     public static Node copyListWithRandom1(Node head){
         Map<Node,Node> map=new HashMap();
         Node cur=head;

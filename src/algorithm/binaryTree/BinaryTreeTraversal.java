@@ -13,13 +13,13 @@ import java.util.Stack;
  */
 public class BinaryTreeTraversal {
     public static void main(String[] args) {
-        TreeNode node=new TreeNode(1);
-        node.left=new TreeNode(2);
-        node.right=new TreeNode(3);
-        node.left.left=new TreeNode(4);
-        node.left.right=new TreeNode(5);
-        node.right.left=new TreeNode(6);
-        node.right.right=new TreeNode(7);
+        Node node=new Node(1);
+        node.left=new Node(2);
+        node.right=new Node(3);
+        node.left.left=new Node(4);
+        node.left.right=new Node(5);
+        node.right.left=new Node(6);
+        node.right.right=new Node(7);
         preOrderRecur(node);
         System.out.println();
         inOrderRecur(node);
@@ -33,39 +33,39 @@ public class BinaryTreeTraversal {
         postOrderUnRecur(node);
         postOrderUnRecur1(node);
     }
-    public static void preOrderRecur(TreeNode node){
+    public static void preOrderRecur(Node node){
         if(node==null){
             return;
         }
-        System.out.print(node.val+" ");
+        System.out.print(node.value+" ");
         preOrderRecur(node.left);
         preOrderRecur(node.right);
     }
-    public static void inOrderRecur(TreeNode node){
+    public static void inOrderRecur(Node node){
         if(node==null){
             return;
         }
         inOrderRecur(node.left);
-        System.out.print(node.val+" ");
+        System.out.print(node.value+" ");
         inOrderRecur(node.right);
     }
-    public static void postOrderRecur(TreeNode node){
+    public static void postOrderRecur(Node node){
         if(node==null){
             return;
         }
         postOrderRecur(node.left);
         postOrderRecur(node.right);
-        System.out.print(node.val+" ");
+        System.out.print(node.value+" ");
     }
 
-    public static void preOrderUnRecur(TreeNode node){
+    public static void preOrderUnRecur(Node node){
         System.out.print("pre-order:");
         if(node!=null){
-            Stack<TreeNode> stack=new Stack<>();
+            Stack<Node> stack=new Stack<>();
             stack.push(node);
             while(!stack.isEmpty()){
                 node=stack.pop();
-                System.out.print(node.val+" ");
+                System.out.print(node.value+" ");
                 if(node.right!=null){
                     stack.push(node.right);
                 }
@@ -76,28 +76,28 @@ public class BinaryTreeTraversal {
         }
     }
 
-    public static void inOrderUnRecur(TreeNode node){
+    public static void inOrderUnRecur(Node node){
         System.out.print("in-order:");
         if(node!=null){
-            Stack<TreeNode> stack=new Stack<>();
+            Stack<Node> stack=new Stack<>();
             while(!stack.isEmpty()|| node!=null){
                 if(node!=null){
                     stack.push(node);
                     node=node.left;
                 }else{
                     node = stack.pop();
-                    System.out.print(node.val+" ");
+                    System.out.print(node.value+" ");
                     node=node.right;
                 }
             }
         }
     }
     //双栈结构版本
-    public static void postOrderUnRecur(TreeNode node){
+    public static void postOrderUnRecur(Node node){
         System.out.print("post-order:");
         if(node!=null){
-            Stack<TreeNode> s1=new Stack<>();
-            Stack<TreeNode> s2=new Stack<>();
+            Stack<Node> s1=new Stack<>();
+            Stack<Node> s2=new Stack<>();
             s1.push(node);
             while(!s1.isEmpty()){
                 node = s1.pop();
@@ -110,18 +110,18 @@ public class BinaryTreeTraversal {
                 }
             }
             while(!s2.isEmpty()){
-                System.out.print(s2.pop().val+" ");
+                System.out.print(s2.pop().value+" ");
             }
         }
     }
 
     //单栈版本
-    public static void postOrderUnRecur1(TreeNode head){
+    public static void postOrderUnRecur1(Node head){
         System.out.print("pos-order: ");
         if (head != null) {
-            Stack<TreeNode> stack = new Stack<>();
+            Stack<Node> stack = new Stack<>();
             stack.push(head);
-            TreeNode c ;
+            Node c ;
             while (!stack.isEmpty()) {
                 c = stack.peek();//c代表栈顶元素
                 if (c.left != null && head != c.left && head != c.right) {
@@ -129,7 +129,7 @@ public class BinaryTreeTraversal {
                 } else if (c.right != null && head != c.right) {
                     stack.push(c.right);
                 } else {
-                    System.out.print(stack.pop().val + " ");
+                    System.out.print(stack.pop().value + " ");
                     head = c;//head代表最近一次弹出并打印的节点
                 }
             }
@@ -137,7 +137,7 @@ public class BinaryTreeTraversal {
     }
 
     //循环版本，非常巧妙，适用于三种遍历，且只需要向递归版本一样调整两行代码顺序即可
-    public static List<Integer> postorderTraversal(TreeNode root){
+    public static List<Integer> postorderTraversal(Node root){
         List<Integer> result=new ArrayList<>();
         Deque<Guide> deque=new ArrayDeque<>();
         deque.addFirst(new Guide(0,root));
@@ -147,7 +147,7 @@ public class BinaryTreeTraversal {
                 continue;
             }
             if(cur.opt==1){
-                result.add(cur.node.val);
+                result.add(cur.node.value);
             }else{
                 deque.addFirst(new Guide(1,cur.node));
                 deque.addFirst(new Guide(0,cur.node.right));
@@ -159,20 +159,11 @@ public class BinaryTreeTraversal {
 
     public static class Guide{
         private int opt;//0,visit 1,print
-        private TreeNode node;
-        public Guide(int opt,TreeNode node){
+        private Node node;
+        public Guide(int opt, Node node){
             this.opt=opt;
             this.node=node;
         }
     }
-    public static class TreeNode{
-        private int val;
-        private TreeNode left;
-        private TreeNode right;
-        public TreeNode(int data){
-            val=data;
-        }
-    }
-
 
 }

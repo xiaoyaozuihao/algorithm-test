@@ -1,19 +1,13 @@
 package binaryTree.printTree;
 
+import binaryTree.Node;
+
 /**
  * 打印一颗二叉树，横向打印
  * @author xuyh
  * @date 2019/5/10
  */
 public class PrintBinaryTree {
-    public static class Node{
-        private int val;
-        private Node left;
-        private Node right;
-        public Node(int value){
-            val=value;
-        }
-    }
 
     public static void printTree(Node node){
         System.out.println("BinaryTree:");
@@ -31,12 +25,12 @@ public class PrintBinaryTree {
             return ;
         }
         printInOrder(node.right,height+1,"v",len);
-        String val=to+node.val+to;
-        int lenM=val.length();
+        String value=to+node.value+to;
+        int lenM=value.length();
         int lenL=(len-lenM)/2;//  左边的空格  ((总长度-值所占长度)，然后分一半)
         int lenR=len-lenM-lenL;//  右边的空格  (总-值-左边空格长度)
-        val=getSpace(lenL)+val+getSpace(lenR);
-        System.out.println(getSpace(height*len)+val);
+        value=getSpace(lenL)+value+getSpace(lenR);
+        System.out.println(getSpace(height*len)+value);
         printInOrder(node.left,height+1,"^",len);
     }
 
@@ -76,6 +70,5 @@ public class PrintBinaryTree {
         head.right.right = new Node(1);
         head.left.left.right = new Node(1);
         printTree(head);
-
     }
 }
