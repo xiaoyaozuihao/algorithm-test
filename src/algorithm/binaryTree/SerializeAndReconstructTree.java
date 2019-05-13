@@ -76,26 +76,6 @@ public class SerializeAndReconstructTree {
         return res;
     }
     public static Node reconByLevelString(String levelString){
-//        String[] values = levelString.split("!");
-//        int index=0;
-//        Node node = generateByLevelString(values[index++]);
-//        Queue<Node> queue=new LinkedList<>();
-//        if(node!=null){
-//            queue.offer(node);
-//        }
-//        Node c;
-//        while(!queue.isEmpty()){
-//            c = queue.poll();
-//            c.left=generateByLevelString(values[index++]);
-//            c.right=generateByLevelString(values[index++]);
-//            if(c.left!=null){
-//                queue.offer(c.left);
-//            }
-//            if(c.right!=null){
-//                queue.offer(c.right);
-//            }
-//        }
-//        return node;
         String[] values = levelString.split("!");
         int index=0;
         Node node = generateByLevelString(values[index++]);
