@@ -18,6 +18,25 @@ public class IsBalancedTree {
         return process(node).isB;
     }
 
+    public static ReturnData process(Node node){
+        if(node==null){
+            return new ReturnData(true,0);
+        }
+        ReturnData left = process(node.left);
+        if(!left.isB){
+            return new ReturnData(false,0);
+        }
+        ReturnData right=process(node.right);
+        if(!right.isB){
+            return new ReturnData(false,0);
+        }
+        if(Math.abs(left.h-right.h)>1){
+            return new ReturnData(false,0);
+        }
+        return new ReturnData(true,Math.max(left.h,right.h)+1);
+
+    }
+
     public static boolean isBalance(Node node){
         boolean[] res=new boolean[1];
         res[0]=true;
@@ -44,45 +63,26 @@ public class IsBalancedTree {
 
     }
 
-    public static ReturnData process(Node node){
+    public static boolean isBalancedTree1(Node node){
+        return process1(node)!=-1;
+    }
+    public static int process1(Node node){
         if(node==null){
-            return new ReturnData(true,0);
+            return 0;
         }
-        ReturnData left = process(node.left);
-        if(!left.isB){
-            return new ReturnData(false,0);
-        }
-        ReturnData right = process(node.right);
-        if(!right.isB){
-            return new ReturnData(false,0);
-        }
-        if(Math.abs(left.h-right.h)>1){
-            return new ReturnData(false,0);
-        }
-        return new ReturnData(true,Math.max(left.h,right.h)+1);
-    }
-
-    public static boolean isBalancedTree1(Node head){
-        return process1(head)!=-1;
-    }
-    public static int process1(Node head){
-        if(head==null){
-            return 1;
-        }
-        int hl=process1(head.left);
-        if(hl==-1){
+        int left = process1(node.left);
+        if(left==-1){
             return -1;
         }
-        int hr=process1(head.right);
-        if(hr==-1){
+        int right=process1(node.right);
+        if(right==-1){
             return -1;
         }
-        if(Math.abs(hl-hr)>1){
+        if(Math.abs(left-right)>1){
             return -1;
         }
-        return Math.min(hl,hr)+1;
+        return Math.max(left,right)+1;
     }
-
     public static void main(String[] args) {
         Node head = new Node(1);
         head.left = new Node(2);

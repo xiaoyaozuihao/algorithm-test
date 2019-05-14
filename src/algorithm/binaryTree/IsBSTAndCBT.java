@@ -13,41 +13,41 @@ import java.util.Queue;
  */
 public class IsBSTAndCBT {
     public static boolean isBST(Node node) {
-        if (node == null) {
+        if(node==null){
             return true;
         }
-        Deque<Node> deque = new ArrayDeque<>();
-        int recent = Integer.MIN_VALUE;
-        while (!deque.isEmpty() || node != null) {
-            if (node != null) {
+        Deque<Node> deque=new ArrayDeque<>();
+        int recent=Integer.MIN_VALUE;
+        while(!deque.isEmpty()||node!=null){
+            if(node!=null){
                 deque.push(node);
-                node = node.left;
-            } else {
-                node = deque.pop();
-                if (node.value < recent) {
+                node=node.left;
+            }else{
+                node=deque.pop();
+                if(node.value<recent){
                     return false;
                 }
-                recent = node.value;
-                node = node.right;
+                recent=node.value;
+                node=node.right;
             }
         }
         return true;
     }
 
     public static boolean isCBT(Node node) {
-        if (node == null) {
+        if(node==null){
             return true;
         }
-        Queue<Node> queue = new LinkedList<>();
-        boolean isLeaf = false;
+        boolean leaf=false;
         Node left;
         Node right;
+        Queue<Node> queue=new LinkedList<>();
         queue.offer(node);
-        while (!queue.isEmpty()) {
-            node = queue.poll();
-            left = node.left;
-            right = node.right;
-            if ((isLeaf && (left != null || right != null))||(left==null&&right!=null)){
+        while(!queue.isEmpty()){
+            node=queue.poll();
+            left=node.left;
+            right=node.right;
+            if((leaf&&(left!=null||right!=null))||(left==null&&right!=null)){
                 return false;
             }
             if(left!=null){
@@ -56,7 +56,7 @@ public class IsBSTAndCBT {
             if(right!=null){
                 queue.offer(right);
             }else{
-                isLeaf=true;
+                leaf=true;
             }
         }
         return true;
