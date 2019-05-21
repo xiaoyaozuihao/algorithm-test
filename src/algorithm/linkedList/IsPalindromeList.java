@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.Node;
+import binaryTree.TreeNode;
 
 import java.util.Stack;
 
@@ -13,15 +13,15 @@ import java.util.Stack;
 public class IsPalindromeList {
 
     //all push stack,need n extra space
-    public static boolean isPalindromeList(Node head) {
+    public static boolean isPalindromeList(TreeNode head) {
         Stack<Integer> stack = new Stack<>();
-        Node temp = head;
+        TreeNode temp = head;
         while (temp != null) {
-            stack.push(temp.value);
+            stack.push(temp.val);
             temp = temp.next;
         }
         while (head != null) {
-            if (head.value != stack.pop()) {
+            if (head.val != stack.pop()) {
                 return false;
             }
             head = head.next;
@@ -30,23 +30,23 @@ public class IsPalindromeList {
     }
 
     //half push stack ,need n/2 extra space
-    public static boolean isPalindromeList1(Node head) {
+    public static boolean isPalindromeList1(TreeNode head) {
         if (head == null || head.next == null) {
             return true;
         }
-        Node slow = head.next;
-        Node fast = head;
+        TreeNode slow = head.next;
+        TreeNode fast = head;
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
         Stack<Integer> stack = new Stack<>();
         while (slow != null) {
-            stack.push(slow.value);
+            stack.push(slow.val);
             slow = slow.next;
         }
         while (!stack.isEmpty()) {
-            if (head.value != stack.pop()) {
+            if (head.val != stack.pop()) {
                 return false;
             }
             head = head.next;
@@ -55,19 +55,19 @@ public class IsPalindromeList {
     }
 
     //need O(1) extra space;
-    public static boolean isPalindromeList2(Node head) {
+    public static boolean isPalindromeList2(TreeNode head) {
         if (head == null || head.next == null) {
             return true;
         }
-        Node n1 = head;//slow pointer
-        Node n2 = head;//fast pointer
+        TreeNode n1 = head;//slow pointer
+        TreeNode n2 = head;//fast pointer
         while (n2.next != null && n2.next.next != null) {
             n1 = n1.next;
             n2 = n2.next.next;
         }
-        n2 = n1.next;//rightPart first Node
+        n2 = n1.next;//rightPart first TreeNode
         n1.next = null;
-        Node n3;
+        TreeNode n3;
         while (n2 != null) {//reverse right part
             n3 = n2.next;
             n2.next = n1;
@@ -78,7 +78,7 @@ public class IsPalindromeList {
         n2 = head;//save firstNode
         boolean res = true;
         while (n1 != null && n2 != null) {
-            if (n1.value != n2.value) {
+            if (n1.val != n2.val) {
                 res = false;
                 break;
             }
@@ -97,18 +97,18 @@ public class IsPalindromeList {
         return res;
     }
 
-    private static void printNode(Node head) {
+    private static void printNode(TreeNode head) {
         while (head != null) {
-            System.out.print(head.value + " ");
+            System.out.print(head.val + " ");
             head = head.next;
         }
     }
 
     public static void main(String[] args) {
-        Node head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(2);
-        head.next.next.next = new Node(1);
+        TreeNode head = new TreeNode(1);
+        head.next = new TreeNode(2);
+        head.next.next = new TreeNode(2);
+        head.next.next.next = new TreeNode(1);
         System.out.println(isPalindromeList(head));
         System.out.println(isPalindromeList1(head));
         System.out.println(isPalindromeList2(head));

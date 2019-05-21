@@ -7,40 +7,63 @@ package binaryTree;
  */
 public class CompleteTreeNodeNum {
 
-    public static int getCBTNum(Node node){
+    public static int getCBTNum(TreeNode node){
         if(node==null){
             return 0;
         }
         return bs(node,1,mostLeftLevel(node,1));
     }
-
-    private static int bs(Node node, int level, int height) {
+    public static int bs(TreeNode node,int level,int height){
         if(level==height){
             return 1;
         }
-        if(mostLeftLevel(node.right,level+1)==height){
+        if(mostLeftLevel(node.right, level+1)==height){//整个左子树是满二叉树
             return (1<<(height-level))+bs(node.right,level+1,height);
         }else{
             return (1<<(height-level-1))+bs(node.left,level+1,height);
         }
     }
 
-    private static int mostLeftLevel(Node node, int level) {
+    //最左的子树的高度
+    public static int mostLeftLevel(TreeNode node,int level){
         while(node!=null){
-            level++;
             node=node.left;
+            level++;
         }
         return level-1;
     }
 
-    public static void main(String[] args) {
-        Node head = new Node(1);
-        head.left = new Node(2);
-        head.right = new Node(3);
-        head.left.left = new Node(4);
-        head.left.right = new Node(5);
-        head.right.left = new Node(6);
-        System.out.println(getCBTNum(head));
+    public static int countNodes(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int left=getDepth(root.left);
+        int right=getDepth(root.right);
+        if(left==right){
+            return (1<<left)+countNodes(root.right);
+        }else{
+            return (1<<right)+countNodes(root.left);
+        }
+    }
 
+    public static int getDepth(TreeNode root){
+        int depth=0;
+        while(root!=null){
+            root=root.left;
+            depth++;
+        }
+        return depth;
+    }
+
+
+    public static void main(String[] args) {
+        TreeNode head = new TreeNode(1);
+        head.left = new TreeNode(2);
+        head.right = new TreeNode(3);
+        head.left.left = new TreeNode(4);
+        head.left.right = new TreeNode(5);
+        head.right.left = new TreeNode(6);
+        System.out.println(getCBTNum(head));
+        System.out.println(countNodes(head));
     }
 }

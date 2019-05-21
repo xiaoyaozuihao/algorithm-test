@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.Node;
+import binaryTree.TreeNode;
 
 /**
  * 将单向链表按某值划分为左边小，中间相等，右边大的形式
@@ -10,17 +10,17 @@ import binaryTree.Node;
  */
 public class SmallEqualBigLinkedList {
 
-    public static Node listPartition1(Node head, int pivot) {
+    public static TreeNode listPartition1(TreeNode head, int pivot) {
         if(head==null){
             return head;
         }
-        Node cur=head;
+        TreeNode cur=head;
         int i=0;
         while(cur!=null){
             i++;
             cur=cur.next;
         }
-        Node[] nodes=new Node[i];
+        TreeNode[] nodes=new TreeNode[i];
         cur=head;
         for(i=0;i!=nodes.length;i++){
             nodes[i]=cur;
@@ -34,14 +34,14 @@ public class SmallEqualBigLinkedList {
         return nodes[0];
     }
 
-    private static void arrayPartition(Node[] nodes, int pivot) {
+    private static void arrayPartition(TreeNode[] nodes, int pivot) {
         int less = -1;
         int more = nodes.length;
         int index = 0;
         while (index != more) {
-            if (nodes[index].value < pivot) {
+            if (nodes[index].val < pivot) {
                 swap(nodes, index++, ++less);
-            } else if (nodes[index].value > pivot) {
+            } else if (nodes[index].val > pivot) {
                 swap(nodes, index, --more);
             } else {
                 index++;
@@ -49,24 +49,24 @@ public class SmallEqualBigLinkedList {
         }
     }
 
-    private static void swap(Node[] nodes, int a, int b) {
-        Node temp = nodes[a];
+    private static void swap(TreeNode[] nodes, int a, int b) {
+        TreeNode temp = nodes[a];
         nodes[a] = nodes[b];
         nodes[b] = temp;
     }
 
-    public static Node listPartition2(Node head, int pivot) {
-        Node sh=null;
-        Node st=null;
-        Node eh=null;
-        Node et=null;
-        Node bh=null;
-        Node bt=null;
-        Node next=null;
+    public static TreeNode listPartition2(TreeNode head, int pivot) {
+        TreeNode sh=null;
+        TreeNode st=null;
+        TreeNode eh=null;
+        TreeNode et=null;
+        TreeNode bh=null;
+        TreeNode bt=null;
+        TreeNode next=null;
         while(head!=null){
             next=head.next;
             head.next=null;
-            if(head.value<pivot){
+            if(head.val <pivot){
                 if(sh==null){
                     sh=head;
                     st=head;
@@ -74,7 +74,7 @@ public class SmallEqualBigLinkedList {
                     st.next=head;
                     st=head;
                 }
-            }else if(head.value==pivot){
+            }else if(head.val ==pivot){
                 if(eh==null){
                     eh=head;
                     et=head;
@@ -104,25 +104,25 @@ public class SmallEqualBigLinkedList {
         return sh!=null?sh:eh!=null?eh:bh;
     }
 
-    public static void printLinkedList(Node head){
+    public static void printLinkedList(TreeNode head){
         while(head!=null){
-            System.out.print(head.value+" ");
+            System.out.print(head.val +" ");
             head=head.next;
         }
         System.out.println();
     }
 
     public static void main(String[] args) {
-        Node head1 = new Node(7);
-        head1.next = new Node(9);
-        head1.next.next = new Node(1);
-        head1.next.next.next = new Node(8);
-        head1.next.next.next.next = new Node(5);
-        head1.next.next.next.next.next = new Node(2);
-        head1.next.next.next.next.next.next = new Node(5);
-//        Node node = listPartition1(head1, 3);
+        TreeNode head1 = new TreeNode(7);
+        head1.next = new TreeNode(9);
+        head1.next.next = new TreeNode(1);
+        head1.next.next.next = new TreeNode(8);
+        head1.next.next.next.next = new TreeNode(5);
+        head1.next.next.next.next.next = new TreeNode(2);
+        head1.next.next.next.next.next.next = new TreeNode(5);
+//        TreeNode node = listPartition1(head1, 3);
 //        printLinkedList(node);
-        Node node1 = listPartition2(head1, 3);
+        TreeNode node1 = listPartition2(head1, 3);
         printLinkedList(node1);
     }
 }

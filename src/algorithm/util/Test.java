@@ -1,6 +1,9 @@
 package util;
 
-import binaryTree.Node;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author xuyh
@@ -8,46 +11,49 @@ import binaryTree.Node;
  */
 public class Test {
 
-    public static boolean isBalancedTree(Node node){
-        boolean[] res=new boolean[1];
-        res[0]=true;
-        getHeight(node,1,res);
-        return res[0];
-    }
-
-    private static int getHeight(Node node, int level, boolean[] res) {
-        if(node==null){
-            return level;
-        }
-        int hl = getHeight(node.left, level + 1, res);
-        if(!res[0]){
-            return level;
-        }
-        int hr = getHeight(node.right, level + 1, res);
-        if(!res[0]){
-            return level;
-        }
-        if(Math.abs(hl-hr)>1){
-            res[0]=false;
-        }
-        return Math.max(hl,hr);
-    }
-
     public static void main(String[] args) {
-        Node head = new Node(1);
-        head.parent = null;
-        head.left = new Node(2);
-        head.left.parent = head;
-        head.left.left = new Node(4);
-        head.left.left.parent = head.left;
-        head.left.right = new Node(5);
-        head.left.right.parent = head.left;
-        head.right = new Node(3);
-        head.right.parent = head;
-        head.right.left = new Node(6);
-        head.right.left.parent = head.right;
-        head.right.right=new Node(7);
-        head.right.right.parent= head.right;
-        System.out.println(isBalancedTree(head));
+        HashMap<String,String> map=new HashMap<>();
+        map.put("A", "1");
+        map.put("B", "2");
+        map.put("C", "3");
+        map.put("D", "1");
+        map.put("E", "2");
+        map.put("F", "3");
+        map.put("G", "1");
+        map.put("H", "2");
+        map.put("I", "3");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + "," + value);
+        }
+        System.out.println("=========================");
+
+        // you can not remove item in map when you use the iterator of map
+//		 for(Entry<String,String> entry : map.entrySet()){
+//			 if(!entry.getValue().equals("1")){
+//				 map.remove(entry.getKey());
+//			 }
+//		 }
+
+        // if you want to remove items, collect them first, then remove them by
+        // this way.
+        List<String> removeKeys = new ArrayList<>();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            if (!entry.getValue().equals("1")) {
+                removeKeys.add(entry.getKey());
+            }
+        }
+        for (String removeKey : removeKeys) {
+            map.remove(removeKey);
+        }
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + "," + value);
+        }
+        System.out.println("=========================");
+        char[][] grid=new char[][]{{'1','c'}};
+        System.out.println(grid[0][0]=='1');
     }
 }

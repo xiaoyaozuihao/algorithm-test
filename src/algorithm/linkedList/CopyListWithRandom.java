@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.Node;
+import binaryTree.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,30 +12,30 @@ import java.util.Map;
  */
 public class CopyListWithRandom {
 
-    public static Node copyListWithRandom1(Node head){
-        Map<Node,Node> map=new HashMap();
-        Node cur=head;
+    public static TreeNode copyListWithRandom1(TreeNode head){
+        Map<TreeNode, TreeNode> map=new HashMap();
+        TreeNode cur=head;
         while(cur!=null){
-            map.put(cur,new Node(cur.value));
+            map.put(cur,new TreeNode(cur.val));
             cur=cur.next;
         }
         cur=head;
-        for (Node node : map.keySet()) {
+        for (TreeNode node : map.keySet()) {
             map.get(node).next=map.get(node.next);
             map.get(node).random=map.get(node.random);
         }
         return map.get(cur);
 
     }
-    public static Node copyListWithRandom2(Node head){
+    public static TreeNode copyListWithRandom2(TreeNode head){
         if(head==null){
             return null;
         }
-        Node cur=head;
-        Node next;
+        TreeNode cur=head;
+        TreeNode next;
         while(cur!=null){
             next=cur.next;
-            cur.next=new Node(cur.value);
+            cur.next=new TreeNode(cur.val);
             cur.next.next=next;
             cur=next;
         }
@@ -44,9 +44,9 @@ public class CopyListWithRandom {
             cur.next.random=cur.random!=null?cur.random.next:null;
             cur=cur.next.next;
         }
-        Node res=head.next;
+        TreeNode res=head.next;
         cur=head;
-        Node temp;
+        TreeNode temp;
         while(cur!=null){
 //            next=cur.next.next;
 //            temp=cur.next;
@@ -61,39 +61,39 @@ public class CopyListWithRandom {
         return res;
     }
 
-    public static void printLinkedList(Node head){
-        Node cur = head;
+    public static void printLinkedList(TreeNode head){
+        TreeNode cur = head;
         System.out.print("order: ");
         while (cur != null) {
-            System.out.print(cur.value + " ");
+            System.out.print(cur.val + " ");
             cur = cur.next;
         }
         cur = head;
         System.out.print("| rand:  ");
         while (cur != null) {
-            System.out.print(cur.random == null ? "- " : cur.random.value + " ");
+            System.out.print(cur.random == null ? "- " : cur.random.val + " ");
             cur = cur.next;
         }
         System.out.println();
     }
 
     public static void main(String[] args) {
-//        Node head = new Node(1);
-//        head.next = new Node(2);
-//        head.next.next = new Node(5);
-//        head.next.next.next = new Node(7);
-//        head.next.next.next.next = new Node(8);
+//        TreeNode head = new TreeNode(1);
+//        head.next = new TreeNode(2);
+//        head.next.next = new TreeNode(5);
+//        head.next.next.next = new TreeNode(7);
+//        head.next.next.next.next = new TreeNode(8);
 //        head.random=head.next.next.next.next;//1>>8
 //        head.next.random=head.next.next;//2>>5
 //        head.next.next.random=head.next.next.next;//5>>7
 //        head.next.next.next.random=head;//7>>1
 //        head.next.next.next.next.random=head.next;//8>>2
-        Node head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = new Node(4);
-        head.next.next.next.next = new Node(5);
-        head.next.next.next.next.next = new Node(6);
+        TreeNode head = new TreeNode(1);
+        head.next = new TreeNode(2);
+        head.next.next = new TreeNode(3);
+        head.next.next.next = new TreeNode(4);
+        head.next.next.next.next = new TreeNode(5);
+        head.next.next.next.next.next = new TreeNode(6);
 
         head.random = head.next.next.next.next.next; // 1 -> 6
         head.next.random = head.next.next.next.next.next; // 2 -> 6
@@ -103,9 +103,9 @@ public class CopyListWithRandom {
         head.next.next.next.next.next.random = head.next.next.next; // 6 -> 4
 
         printLinkedList(head);
-//        Node node = copyListWithRandom1(head);
+//        TreeNode node = copyListWithRandom1(head);
 //        printLinkedList(node);
-        Node node = copyListWithRandom2(head);
+        TreeNode node = copyListWithRandom2(head);
         printLinkedList(node);
     }
 }

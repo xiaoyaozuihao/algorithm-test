@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.Node;
+import binaryTree.TreeNode;
 
 /**
  * 两个单链表相交的一系列问题
@@ -8,12 +8,12 @@ import binaryTree.Node;
  * @date 2019/5/3
  */
 public class FindFirstIntersectNode {
-    public static Node getIntersectNode(Node head1, Node head2){
+    public static TreeNode getIntersectNode(TreeNode head1, TreeNode head2){
         if(head1==null||head2==null){
             return null;
         }
-        Node loop1 = getLoopNode(head1);
-        Node loop2 = getLoopNode(head2);
+        TreeNode loop1 = getLoopNode(head1);
+        TreeNode loop2 = getLoopNode(head2);
         if(loop1==null&&loop1==null){//两个无环链表的相交问题
             return noLoop(head1,head2);
         }
@@ -24,9 +24,9 @@ public class FindFirstIntersectNode {
         return null;
     }
 
-    private static Node bothLoop(Node head1, Node loop1, Node head2, Node loop2) {
-        Node cur1;
-        Node cur2;
+    private static TreeNode bothLoop(TreeNode head1, TreeNode loop1, TreeNode head2, TreeNode loop2) {
+        TreeNode cur1;
+        TreeNode cur2;
         if(loop1==loop2){
             cur1=head1;
             cur2=head2;
@@ -63,9 +63,9 @@ public class FindFirstIntersectNode {
         }
     }
 
-    private static Node noLoop(Node head1, Node head2) {
-        Node cur1=head1;
-        Node cur2=head2;
+    private static TreeNode noLoop(TreeNode head1, TreeNode head2) {
+        TreeNode cur1=head1;
+        TreeNode cur2=head2;
         int n=0;
         while(cur1.next!=null){
             n++;
@@ -92,12 +92,12 @@ public class FindFirstIntersectNode {
         return cur1;
     }
 
-    public static Node getLoopNode(Node head){
+    public static TreeNode getLoopNode(TreeNode head){
         if(head==null||head.next==null||head.next.next==null){
             return null;
         }
-        Node n1=head.next;//slow
-        Node n2=head.next.next;//fast
+        TreeNode n1=head.next;//slow
+        TreeNode n2=head.next.next;//fast
         while(n1!=n2){
             if(n2.next==null||n2.next.next==null){
                 return null;
@@ -115,43 +115,43 @@ public class FindFirstIntersectNode {
 
     public static void main(String[] args) {
         // 1->2->3->4->5->6->7->null
-        Node head1 = new Node(1);
-        head1.next = new Node(2);
-        head1.next.next = new Node(3);
-        head1.next.next.next = new Node(4);
-        head1.next.next.next.next = new Node(5);
-        head1.next.next.next.next.next = new Node(6);
-        head1.next.next.next.next.next.next = new Node(7);
+        TreeNode head1 = new TreeNode(1);
+        head1.next = new TreeNode(2);
+        head1.next.next = new TreeNode(3);
+        head1.next.next.next = new TreeNode(4);
+        head1.next.next.next.next = new TreeNode(5);
+        head1.next.next.next.next.next = new TreeNode(6);
+        head1.next.next.next.next.next.next = new TreeNode(7);
 
         // 0->9->8->6->7->null
-        Node head2 = new Node(0);
-        head2.next = new Node(9);
-        head2.next.next = new Node(8);
+        TreeNode head2 = new TreeNode(0);
+        head2.next = new TreeNode(9);
+        head2.next.next = new TreeNode(8);
         head2.next.next.next = head1.next.next.next.next.next; // 8->6
-        System.out.println(getIntersectNode(head1, head2).value);
+        System.out.println(getIntersectNode(head1, head2).val);
 
         // 1->2->3->4->5->6->7->4...
-        head1 = new Node(1);
-        head1.next = new Node(2);
-        head1.next.next = new Node(3);
-        head1.next.next.next = new Node(4);
-        head1.next.next.next.next = new Node(5);
-        head1.next.next.next.next.next = new Node(6);
-        head1.next.next.next.next.next.next = new Node(7);
+        head1 = new TreeNode(1);
+        head1.next = new TreeNode(2);
+        head1.next.next = new TreeNode(3);
+        head1.next.next.next = new TreeNode(4);
+        head1.next.next.next.next = new TreeNode(5);
+        head1.next.next.next.next.next = new TreeNode(6);
+        head1.next.next.next.next.next.next = new TreeNode(7);
         head1.next.next.next.next.next.next = head1.next.next.next; // 7->4
 
         // 0->9->8->2...
-        head2 = new Node(0);
-        head2.next = new Node(9);
-        head2.next.next = new Node(8);
+        head2 = new TreeNode(0);
+        head2.next = new TreeNode(9);
+        head2.next.next = new TreeNode(8);
         head2.next.next.next = head1.next; // 8->2
-        System.out.println(getIntersectNode(head1, head2).value);
+        System.out.println(getIntersectNode(head1, head2).val);
 
         // 0->9->8->6->4->5->6..
-        head2 = new Node(0);
-        head2.next = new Node(9);
-        head2.next.next = new Node(8);
+        head2 = new TreeNode(0);
+        head2.next = new TreeNode(9);
+        head2.next.next = new TreeNode(8);
         head2.next.next.next = head1.next.next.next.next.next; // 8->6
-        System.out.println(getIntersectNode(head1, head2).value);
+        System.out.println(getIntersectNode(head1, head2).val);
     }
 }

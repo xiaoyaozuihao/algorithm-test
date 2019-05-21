@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.Node;
+import binaryTree.TreeNode;
 
 /**
  * 反转链表
@@ -11,9 +11,9 @@ import binaryTree.Node;
 public class ReverseLinkedList {
 
     //单链表反转
-    public static Node reverseList(Node head) {
-        Node pre = null;
-        Node next;
+    public static TreeNode reverseList(TreeNode head) {
+        TreeNode pre = null;
+        TreeNode next;
         while (head != null) {
             next = head.next;
             head.next = pre;
@@ -46,10 +46,10 @@ public class ReverseLinkedList {
         }
     }
 
-    public static void printLinkedList(Node head) {
+    public static void printLinkedList(TreeNode head) {
         System.out.print("Linked list:");
         while (head != null) {
-            System.out.print(head.value + " ");
+            System.out.print(head.val + " ");
             head = head.next;
         }
         System.out.println();
@@ -72,10 +72,10 @@ public class ReverseLinkedList {
     }
 
     public static void main(String[] args) {
-        Node head=new Node(1);
-        head.next=new Node(2);
-        head.next.next=new Node(3);
-        head.next.next.next=new Node(4);
+        TreeNode head=new TreeNode(1);
+        head.next=new TreeNode(2);
+        head.next.next=new TreeNode(3);
+        head.next.next.next=new TreeNode(4);
         printLinkedList(head);
         printLinkedList(reverseList(head));
         DoubleNode head1 = new DoubleNode(1);
