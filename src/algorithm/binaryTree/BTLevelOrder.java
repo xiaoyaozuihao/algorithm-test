@@ -32,7 +32,6 @@ public class BTLevelOrder {
             while(count>0){
                 root=queue.poll();
                 list.add(root.val);
-//                System.out.print(root.val+" ");
                 if(root.left!=null){
                     queue.add(root.left);
                 }
@@ -42,9 +41,63 @@ public class BTLevelOrder {
                 count--;
             }
             res.add(list);
-//            System.out.println();
         }
         return res;
+    }
+
+    public static void printLevelOrder1(TreeNode root){
+        if(root==null){
+            return ;
+        }
+        Queue<TreeNode> queue=new LinkedList<>();
+        int count;
+        int level=1;
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            count=queue.size();
+            System.out.print("level "+(level++)+":");
+            while(count>0){
+                root=queue.poll();
+                System.out.print(root.val+" ");
+                if(root.left!=null){
+                    queue.offer(root.left);
+                }
+                if(root.right!=null){
+                    queue.offer(root.right);
+                }
+                count--;
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printLevelOrder(TreeNode root){
+        if(root==null){
+            return ;
+        }
+        Queue<TreeNode> queue=new LinkedList<>();
+        int level=1;
+        TreeNode last=root;
+        TreeNode nlast=null;
+        queue.offer(root);
+        System.out.print("level "+ (level++) +":");
+        while(!queue.isEmpty()){
+            root=queue.poll();
+            System.out.print(root.val+" ");
+            if(root.left!=null){
+                queue.offer(root.left);
+                nlast=root.left;
+            }
+            if(root.right!=null){
+                queue.offer(root.right);
+                nlast=root.right;
+            }
+            if(root==last&&!queue.isEmpty()){
+                System.out.print("\nLevel "+(level++)+":");
+                last=nlast;
+            }
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -55,6 +108,8 @@ public class BTLevelOrder {
         node.left.right=new TreeNode(5);
         node.right.left=new TreeNode(6);
         node.right.right=new TreeNode(7);
-        levelOrder(node);
+//        levelOrder(node);
+//        printLevelOrder(node);
+        printLevelOrder1(node);
     }
 }

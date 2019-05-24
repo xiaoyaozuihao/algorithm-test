@@ -35,4 +35,11 @@ public class TreeNode {
         }
         System.out.println();
     }
+
+    public static void printListNode(TreeNode node){
+        while(node!=null){
+            System.out.print(node.val+" ");
+            node=node.next;
+        }
+    }
 }

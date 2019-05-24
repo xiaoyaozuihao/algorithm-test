@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.Node;
+import binaryTree.TreeNode;
 
 /**
  * 两两交换链表中的节点
@@ -9,17 +9,17 @@ import binaryTree.Node;
  */
 public class SwapPairs {
 
-    public static Node swapPairs(Node node){
+    public static TreeNode swapPairs(TreeNode node){
         if(node==null||node.next==null){
             return node;
         }
-        Node next=node.next;
+        TreeNode next=node.next;
         node.next=swapPairs(next.next);
         next.next=node;
         return next;
     }
-    public static Node swapPairs1(Node node){
-        Node p1, p2, p3;
+    public static TreeNode swapPairs1(TreeNode node){
+        TreeNode p1, p2, p3;
         if(node == null||node.next==null) {
             return node;
         }

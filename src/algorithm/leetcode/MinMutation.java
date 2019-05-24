@@ -67,10 +67,9 @@ public class MinMutation {
                 }
                 if (isTrue(ss,bank[i])){
                     continue;
+                }else if (bank[i].equals(end)){
+                    return sum+1;
                 }else{
-                    if (bank[i]==end){
-                        return sum+1;
-                    }
                     step.push(sum+1);
                     s1.push(bank[i]);
                     bank[i]=null;
