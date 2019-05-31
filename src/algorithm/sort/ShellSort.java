@@ -1,13 +1,16 @@
-package util;
+package sort;
+
+import util.BaseUtil;
 
 /**
+ * 希尔排序
  * @author xuyh
- * @date 2019/5/12
+ * @date 2019/5/31
  */
-public class Test {
-    public static int[] sort(int[] arr){
+public class ShellSort {
+    public static void shellSort(int[] arr){
         if(arr==null||arr.length<2){
-            return arr;
+            return;
         }
         int num=arr.length/2;
         int i,j,temp;
@@ -23,11 +26,9 @@ public class Test {
             }
             num/=2;
         }
-        return arr;
     }
+
     public static void main(String[] args) {
-        int[] arr = {3, 4, 1, 2, 2};
-        int[] ints = sort(arr);
-        BaseUtil.printArray(ints);
+        BaseUtil.testTemplate("sort.ShellSort","shellSort");
     }
 }

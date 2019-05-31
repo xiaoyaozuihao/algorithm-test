@@ -3,6 +3,7 @@ package sort;
 import util.BaseUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -15,12 +16,8 @@ public class BucketSort {
         if(arr==null||arr.length<2){
             return;
         }
-        int max=Integer.MIN_VALUE;
-        int min=Integer.MAX_VALUE;
-        for(int i=0;i<arr.length;i++){
-            max=Math.max(max,arr[i]);
-            min= Math.min(min,arr[i]);
-        }
+        int min = Arrays.stream(arr).min().getAsInt();
+        int max = Arrays.stream(arr).max().getAsInt();
         //桶数
         int bucketNum=(max-min)/arr.length+1;
         ArrayList<ArrayList<Integer>> bucketArr = new ArrayList<>(bucketNum);

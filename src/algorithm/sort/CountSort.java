@@ -30,7 +30,7 @@ public class CountSort {
         }
     }
 
-    public static int[] countSort1(int[] arr){
+    public static int[] countSort1(int[] arr){//未能实现稳定排序
         if(arr==null||arr.length<2){
             return arr;
         }
@@ -48,7 +48,7 @@ public class CountSort {
             bucket[j]=bucket[j-1]+bucket[j];
         }
         int[] res=new int[arr.length];
-        for(int i=0;i<arr.length;i++){
+        for(int i=arr.length-1;i>=0;i--){
             int pos=--bucket[arr[i]-min];
             res[pos]=arr[i];
         }
@@ -57,7 +57,7 @@ public class CountSort {
 
     public static void main(String[] args) {
 //        BaseUtil.testTemplate("CountSort","countSort1");
-        int[] arr = {3, 4, 1, 2, 2};
+        int[] arr = {3,2, 4,2, 1, 2, 2};
         int[] ints = countSort1(arr);
         BaseUtil.printArray(ints);
     }

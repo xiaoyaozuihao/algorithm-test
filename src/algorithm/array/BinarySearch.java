@@ -1,4 +1,4 @@
-package other;
+package array;
 
 /**
  * 二分查找
@@ -40,6 +40,8 @@ public class BinarySearch {
         }
         return -1;
     }
+
+
 
     public static void main(String[] args) {
 
