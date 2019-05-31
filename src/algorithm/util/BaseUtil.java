@@ -108,7 +108,7 @@ public class BaseUtil {
 
     public static void testTemplate(String className, String methodName) {
         //定义测试次数
-        int times = 10000;
+        int times = 100000;
         int maxSize = 100;
         int maxValue = 30;
         boolean succeed = true;

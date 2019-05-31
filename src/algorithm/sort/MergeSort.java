@@ -1,5 +1,7 @@
 package sort;
 
+import util.BaseUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,9 @@ public class MergeSort {
     }
 
     private static void sortProcess(int[] arr, int L, int R) {
+        if(L==R){
+            return;
+        }
         int mid = L+((R-L)>>1);//二分求中位数，这种写法可以避免越界
         //拆成两个子过程递归
         sortProcess(arr,L,mid);
@@ -50,7 +55,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-//        BaseUtil.testTemplate("MergeSort","mergeSort");
+        BaseUtil.testTemplate("sort.MergeSort","mergeSort");
         List<String> list1 = new ArrayList<>();
         list1.add("1");
         list1.add("2");
