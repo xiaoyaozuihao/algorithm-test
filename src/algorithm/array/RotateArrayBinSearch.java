@@ -10,7 +10,7 @@ public class RotateArrayBinSearch {
     public static int binarySearch(int[] nums,int target){
         int l=0,r=nums.length-1,mid;
         while(l<=r){
-            mid=(l+r)>>1;
+            mid=l+(r-l)>>1;
             if(nums[mid]==target){
                 return mid;
             }

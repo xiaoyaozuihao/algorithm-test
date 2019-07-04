@@ -25,6 +25,7 @@ public class CountSort {
         }
         for(int j=0,i=0;j<bucket.length;j++){
             while(bucket[j]-->0){
+                //注意：桶的索引存放的是真正的数-最小的数，所以还原时+最小的数
                 array[i++]=j+min;
             }
         }

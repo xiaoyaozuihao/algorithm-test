@@ -41,7 +41,7 @@ public class InsertSort {
             int temp=arr[i];
             int j;
             //如果前面的元素大于目标值，就向后移动一位，同时指针减一
-            //如果前面的元素小于等于目标值，跳出循环，由于每次循环减1，所以是j+1和temp交换
+            //如果前面的元素小于等于目标值，跳出循环，由于每次循环减1，所以最终是j+1和temp交换
             for(j=i-1;j>=0&&arr[j]>temp;j--){
                 arr[j+1]=arr[j];
             }
