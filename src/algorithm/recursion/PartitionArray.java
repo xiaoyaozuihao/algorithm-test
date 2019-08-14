@@ -31,10 +31,14 @@ public class PartitionArray {
         int more = r;
         while (less < more) {
             while (arr[less] <= p) {
-                if (++less > more) break;
+                if (++less > more) {
+                    break;
+                }
             }
             while (arr[more] > p) {
-                if (--more < less) break;
+                if (--more < less) {
+                    break;
+                }
             }
             if (less < more) {
                 BaseUtil.swap(arr, less, more);

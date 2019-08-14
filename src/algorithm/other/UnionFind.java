@@ -10,6 +10,12 @@ import java.util.Stack;
  * @date 2019/5/21
  */
 public class UnionFind {
+    public static void main(String[] args) {
+        byte[] bype=new byte[1000*1024*1024];
+        System.out.println("最大内存："+Runtime.getRuntime().maxMemory()/1024/1024+"M");
+        System.out.println("可用内存："+Runtime.getRuntime().freeMemory()/1024/1024+"M");
+        System.out.println("已使用内存："+Runtime.getRuntime().totalMemory()/1024/1024+"M");
+    }
     public static class Node{
        //whatever you like
     }
@@ -32,18 +38,28 @@ public class UnionFind {
 
         public Node findHead(Node node){
             //迭代解法
+//            Stack<Node> stack=new Stack<>();
+//            Node father = fatherMap.get(node);
+//            Node cur=node;
+//            while(cur!=father){
+//                stack.push(cur);
+//                cur=father;
+//                father=fatherMap.get(cur);
+//            }
+//            while(!stack.isEmpty()){
+//                fatherMap.put(stack.pop(),father);
+//            }
+//            return father;
+            //简洁写法
             Stack<Node> stack=new Stack<>();
-            Node father = fatherMap.get(node);
-            Node cur=node;
-            while(cur!=father){
-                stack.push(cur);
-                cur=father;
-                father=fatherMap.get(cur);
+            while(node!=fatherMap.get(node)){
+                 stack.push(node);
+                 node=fatherMap.get(node);
             }
             while(!stack.isEmpty()){
-                fatherMap.put(stack.pop(),father);
+                fatherMap.put(stack.pop(),node);
             }
-            return father;
+            return node;
             //递归解法
 //            Node fatherNode = fatherMap.get(node);
 //            if(fatherNode!=node){

@@ -19,7 +19,8 @@ public class CountSort {
             min=Math.min(array[i],min);
             max=Math.max(array[i],max);
         }
-        int[] bucket=new int[max-min+1];//如果数组中的数不集中，会浪费大量的桶
+        //如果数组中的数不集中，会浪费大量的桶
+        int[] bucket=new int[max-min+1];
         for(int i=0;i< array.length;i++){
             bucket[array[i]-min]++;
         }

@@ -25,10 +25,8 @@ public class InsertSort {
             return ;
         }
         for(int i=1;i<arr.length;i++){//外层循环定义遍历次数n-1
-            for(int j=i-1;j>=0;j--){//内层循环从目标元素的前一个元素向前遍历，比较并交换
-                if(arr[j]>arr[j+1]){
-                    BaseUtil.swap(arr,j,j+1);
-                }
+            for(int j=i-1;j>=0&&arr[j]>arr[j+1];j--){//内层循环从目标元素的前一个元素向前遍历，比较并交换
+                BaseUtil.swap(arr,j,j+1);
             }
         }
     }
@@ -41,7 +39,7 @@ public class InsertSort {
             int temp=arr[i];
             int j;
             //如果前面的元素大于目标值，就向后移动一位，同时指针减一
-            //如果前面的元素小于等于目标值，跳出循环，由于每次循环减1，所以是j+1和temp交换
+            //如果前面的元素小于等于目标值，跳出循环，由于每次循环减1，所以循环之后是j+1和temp交换
             for(j=i-1;j>=0&&arr[j]>temp;j--){
                 arr[j+1]=arr[j];
             }

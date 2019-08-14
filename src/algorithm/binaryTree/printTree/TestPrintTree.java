@@ -38,19 +38,35 @@ public class TestPrintTree {
 
             @Override
             public Object left(Object node) {
-                if (node.equals(8)) return 3;
-                if (node.equals(3)) return 1;
-                if (node.equals(6)) return 4;
-                if (node.equals(14)) return 13;
+                if (node.equals(8)) {
+                    return 3;
+                }
+                if (node.equals(3)) {
+                    return 1;
+                }
+                if (node.equals(6)) {
+                    return 4;
+                }
+                if (node.equals(14)) {
+                    return 13;
+                }
                 return null;
             }
 
             @Override
             public Object right(Object node) {
-                if (node.equals(8)) return 10;
-                if (node.equals(10)) return 14;
-                if (node.equals(3)) return 6;
-                if (node.equals(6)) return 7;
+                if (node.equals(8)) {
+                    return 10;
+                }
+                if (node.equals(10)) {
+                    return 14;
+                }
+                if (node.equals(3)) {
+                    return 6;
+                }
+                if (node.equals(6)) {
+                    return 7;
+                }
                 return null;
             }
 
@@ -74,19 +90,35 @@ public class TestPrintTree {
 
             @Override
             public Object left(Object node) {
-                if (node.equals("Life")) return "Animal";
-                if (node.equals("Person")) return "Man";
-                if (node.equals("Animal")) return "Cat";
-                if (node.equals("Dog")) return "Teddy";
+                if (node.equals("Life")) {
+                    return "Animal";
+                }
+                if (node.equals("Person")) {
+                    return "Man";
+                }
+                if (node.equals("Animal")) {
+                    return "Cat";
+                }
+                if (node.equals("Dog")) {
+                    return "Teddy";
+                }
                 return null;
             }
 
             @Override
             public Object right(Object node) {
-                if (node.equals("Life")) return "Person";
-                if (node.equals("Person")) return "Woman";
-                if (node.equals("Animal")) return "Dog";
-                if (node.equals("Dog")) return "SingleDog";
+                if (node.equals("Life")) {
+                    return "Person";
+                }
+                if (node.equals("Person")) {
+                    return "Woman";
+                }
+                if (node.equals("Animal")) {
+                    return "Dog";
+                }
+                if (node.equals("Dog")) {
+                    return "SingleDog";
+                }
                 return null;
             }
 
@@ -109,7 +141,9 @@ public class TestPrintTree {
     static List<BinarySearchTree<Integer>> bsts = new ArrayList<>();
 
     static BinarySearchTree<Integer> bst(Integer ints[]) {
-        if (ints == null) return null;
+        if (ints == null) {
+            return null;
+        }
         BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
         for (Integer integer : ints) {
             bst.add(integer);

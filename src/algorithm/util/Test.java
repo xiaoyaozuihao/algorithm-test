@@ -9,40 +9,42 @@ public class Test {
         if(arr==null||arr.length<2){
             return;
         }
-        sortProcess(arr,0,arr.length-1);
-
+        mergeSort(arr,0,arr.length-1);
     }
 
-    private static void sortProcess(int[] arr, int l, int r) {
+    private static void mergeSort(int[] arr, int l, int r) {
         if(l==r){
             return;
         }
         int mid=l+((r-l)>>1);
-        sortProcess(arr,l,mid);
-        sortProcess(arr,mid+1,r);
+        mergeSort(arr,l,mid);
+        mergeSort(arr,mid+1,r);
         merge(arr,l,mid,r);
     }
 
     private static void merge(int[] arr, int l, int mid, int r) {
         int[] help=new int[r-l+1];
+        int i=0;
         int p1=l;
         int p2=mid+1;
-        int index=0;
         while(p1<=mid&&p2<=r){
-            help[index++]=arr[p1]<arr[p2]?arr[p1++]:arr[p2++];
+            help[i++]=arr[p1]<=arr[p2]?arr[p1++]:arr[p2++];
         }
         while(p1<=mid){
-            help[index++]=arr[p1++];
+            help[i++]=arr[p1++];
         }
         while(p2<=r){
-            help[index++]=arr[p2++];
+            help[i++]=arr[p2++];
         }
-        for(index=0;index<help.length;index++){
-            arr[l+index]=help[index];
+        for(i=0;i<help.length;i++){
+            arr[l+i]=help[i];
         }
     }
 
     public static void main(String[] args) {
+        long start =System.currentTimeMillis();
         BaseUtil.testTemplate("util.Test","sort");
+        long end=System.currentTimeMillis();
+        System.out.println(end-start);
     }
 }

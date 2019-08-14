@@ -29,7 +29,6 @@ public class MergeSort {
         //对子过程进行排序
         merge(arr,L,mid,R);
     }
-
     public static  void merge(int[] arr,int L,int mid,int R){
         //定义一个辅助数组,长度为原数组的长度
         int[] help=new int[R-L+1];

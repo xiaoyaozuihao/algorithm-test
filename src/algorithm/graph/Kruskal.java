@@ -1,11 +1,14 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * 最小生成树K算法
@@ -21,12 +24,21 @@ public class Kruskal {
             rankMap=new HashMap<>();
         }
         private Node findFather(Node node){
-            Node fatherNode = fatherMap.get(node);
-            if(fatherNode!=node){
-                fatherNode=findFather(fatherNode);
+//            Node fatherNode = fatherMap.get(node);
+//            if(fatherNode!=node){
+//                fatherNode=findFather(fatherNode);
+//            }
+//            fatherMap.put(node,fatherNode);
+//            return fatherNode;
+            Stack<Node> stack=new Stack<>();
+            while(node!=fatherMap.get(node)){
+                stack.push(node);
+                node=fatherMap.get(node);
             }
-            fatherMap.put(node,fatherNode);
-            return fatherNode;
+            while(!stack.isEmpty()){
+                fatherMap.put(stack.pop(),node);
+            }
+            return node;
         }
 
         public void makeSets(Collection<Node> nodes){
@@ -75,5 +87,20 @@ public class Kruskal {
             }
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        UnionFind unionFind=new UnionFind();
+        List<Node> nodes=new ArrayList<>();
+        Node node1 = new Node(1);
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        nodes.add(node1);
+        nodes.add(node2);
+        nodes.add(node3);
+        unionFind.makeSets(nodes);
+        unionFind.union(node1,node2);
+        System.out.println(unionFind.isSameSet(node1, node2));
+        System.out.println(unionFind.isSameSet(node3, node2));
     }
 }
