@@ -4,7 +4,7 @@ import util.BaseUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 /**
  * 桶排序
@@ -30,12 +30,29 @@ public class BucketSort {
         }
         int index=0;
         for(int i=0;i<bucketNum;i++){
-            Collections.sort(bucketArr.get(i));
+//            Collections.sort(bucketArr.get(i));
+            insertSort(bucketArr.get(i));
             for(int j=0;j<bucketArr.get(i).size();j++){
                 arr[index++]=bucketArr.get(i).get(j);
             }
         }
     }
+
+    private static void insertSort(List<Integer> bucketList)  {
+        if(bucketList==null||bucketList.size()<2){
+            return ;
+        }
+        for(int i=1;i<bucketList.size();i++){
+            int temp=bucketList.get(i);
+            int j=i-1;
+            while(j>=0&&bucketList.get(j)>temp){
+                bucketList.set(j+1,bucketList.get(j));
+                j--;
+            }
+            bucketList.set(j+1,temp);
+        }
+    }
+
 
     public static void main(String[] args) {
         BaseUtil.testTemplate("BucketSort","bucketSort");

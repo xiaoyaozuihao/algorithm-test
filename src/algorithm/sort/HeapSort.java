@@ -33,6 +33,8 @@ public class HeapSort {
     private static void heapify(int[] arr, int index, int heapSize) {
         int left = 2 * index + 1;//目标节点左侧子节点
         while (left < heapSize) {
+            //注意当右节点越界，最大要取左节点。下面这种写法就有问题，在写这种表达式的时候要特别注意
+//            int largest = left + 1 < heapSize && arr[left + 1] < arr[left] ? left: left+1;
             int largest = left + 1 < heapSize && arr[left] < arr[left + 1] ? left + 1 : left;
             largest = arr[largest] > arr[index] ? largest : index;
             if (largest == index) {
