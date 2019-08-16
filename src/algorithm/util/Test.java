@@ -5,46 +5,39 @@ package util;
  * @date 2019/5/12
  */
 public class Test {
+    public static void main(String[] args) {
+//        BaseUtil.testTemplate("util.Test","sort");
+    }
+
     public static void sort(int[] arr){
         if(arr==null||arr.length<2){
             return;
         }
-        mergeSort(arr,0,arr.length-1);
+        quickSort(arr,0,arr.length-1);
     }
 
-    private static void mergeSort(int[] arr, int l, int r) {
-        if(l==r){
-            return;
-        }
-        int mid=l+((r-l)>>1);
-        mergeSort(arr,l,mid);
-        mergeSort(arr,mid+1,r);
-        merge(arr,l,mid,r);
-    }
-
-    private static void merge(int[] arr, int l, int mid, int r) {
-        int[] help=new int[r-l+1];
-        int i=0;
-        int p1=l;
-        int p2=mid+1;
-        while(p1<=mid&&p2<=r){
-            help[i++]=arr[p1]<=arr[p2]?arr[p1++]:arr[p2++];
-        }
-        while(p1<=mid){
-            help[i++]=arr[p1++];
-        }
-        while(p2<=r){
-            help[i++]=arr[p2++];
-        }
-        for(i=0;i<help.length;i++){
-            arr[l+i]=help[i];
+    private static void quickSort(int[] arr, int l, int r) {
+        if(l<r){
+            BaseUtil.swap(arr,l+(int)Math.random()*(r-l+1),r);
+            int[] p = partition(arr, l, r);
+            quickSort(arr,l,p[0]-1);
+            quickSort(arr,p[1]+1,r);
         }
     }
 
-    public static void main(String[] args) {
-        long start =System.currentTimeMillis();
-        BaseUtil.testTemplate("util.Test","sort");
-        long end=System.currentTimeMillis();
-        System.out.println(end-start);
+    private static int[] partition(int[] arr, int l, int r) {
+        int less=l-1;
+        int more=r;
+        while(l<more){
+            if(arr[l]<arr[r]){
+                BaseUtil.swap(arr,++less,l++);
+            }else if(arr[l]>arr[r]){
+                BaseUtil.swap(arr,--more,l);
+            }else {
+                l++;
+            }
+        }
+        BaseUtil.swap(arr,more,r);
+        return new int[]{less+1,more};
     }
 }

@@ -56,6 +56,18 @@ public class InsertSort {
 //            }
 //            arr[j+1]=temp;
 //        }
+        //插入排序变种
+//        for(int i=1;i<arr.length;i++){
+//            int temp=arr[i];
+//            int j=i-1;
+//            while(arr[j]>temp){
+//                arr[j+1]=arr[j];
+//                if(j--==0){
+//                    break;
+//                }
+//            }
+//            arr[j+1]=temp;
+//        }
     }
 
 }

@@ -2,87 +2,57 @@ package sort;
 
 import util.BaseUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author xuyh
  * @date 2019/4/19
  */
 public class TestSort {
-    public static void heapSort(int[] arr) {
+    public static void main(String[] args) {
+        BaseUtil.testTemplate("sort.TestSort", "sort");
+//        int [] arr=new int[]{16,0,25,28,9,12,-29,26,26,-10,12,10,11,-11,-28,24,-3,-22,-7,-22,20,-2,27,-16,25,-14,-15,20,-3,5,6,-9,26,-2,-18,-9,4,14};
+//        sort(arr);
+//        BaseUtil.printArray(arr);
+    }
+
+    public static void sort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
         }
-        for (int i = 0; i < arr.length; i++) {
-            heapInsert(arr, i);
+        int max= Arrays.stream(arr).max().getAsInt();
+        int min=Arrays.stream(arr).min().getAsInt();
+        int bucketNum=(max-min)/arr.length+1;
+        List<List<Integer>> bucket=new ArrayList<>(bucketNum);
+        for(int i=0;i<bucketNum;i++){
+            bucket.add(new ArrayList<>());
         }
-        int heapSize = arr.length;
-        BaseUtil.swap(arr, 0, --heapSize);
-        while (heapSize > 0) {
-            heapify(arr, 0, heapSize);
-            BaseUtil.swap(arr, 0, --heapSize);
+        for(int i=0;i<arr.length;i++){
+            int num=(arr[i]-min)/arr.length;
+            bucket.get(num).add(arr[i]);
         }
-    }
-
-    private static void heapify(int[] arr, int index, int heapSize) {
-        int left = 2 * index + 1;
-        while (left < heapSize) {
-            int largest = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;
-            largest = arr[index] > arr[largest] ? index : largest;
-            if (largest == index) {
-                break;
-            }
-            BaseUtil.swap(arr, index, largest);
-            index = largest;
-            left = 2 * index + 1;
-        }
-    }
-
-    private static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
-            BaseUtil.swap(arr, index, (index - 1) / 2);
-            index = (index - 1) / 2;
-        }
-    }
-
-    public static void main(String[] args) {
-        BaseUtil.testTemplate("TestSort", "heapSort");
-    }
-
-    public static int maxGap(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return 0;
-        }
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        int len = arr.length;
-        for (int i = 0; i < len; i++) {
-            min = Math.min(arr[i], min);
-            max = Math.max(arr[i], max);
-        }
-        if (min == max) {
-            return 0;
-        }
-        int[] maxs = new int[len + 1];
-        int[] mins = new int[len + 1];
-        boolean[] hasNum = new boolean[len + 1];
-        int bid;
-        for (int i = 0; i < len; i++) {
-            bid = bucket(arr[i], len, max, min);
-            maxs[bid] = hasNum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
-            mins[bid] = hasNum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
-            hasNum[bid] = true;
-        }
-        int res = 0;
-        int lastMax = maxs[0];
-        for (int i = 1; i <=len; i++) {
-            if (hasNum[i]) {
-                res = Math.max(res, mins[i] - lastMax);
-                lastMax = maxs[i];
+        int index=0;
+        for(int i=0;i<bucketNum;i++){
+            insertion(bucket.get(i));
+//            Collections.sort(bucket.get(i));
+            for(int j=0;j<bucket.get(i).size();j++){
+                arr[index++]=bucket.get(i).get(j);
             }
         }
-        return res;
+
     }
 
-    private static int bucket(int num, int len, int max, int min) {
-        return (num - min) * len / (max - min);
+    private static void insertion(List<Integer> bucket) {
+        for(int j=1;j<bucket.size();j++){
+            int temp=bucket.get(j);
+            int k=j-1;
+            while(k>=0&&bucket.get(k)>temp){
+                bucket.set(k+1,bucket.get(k--));
+            }
+            bucket.set(k+1,temp);
+        }
+
     }
 }

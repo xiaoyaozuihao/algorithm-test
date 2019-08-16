@@ -53,6 +53,32 @@ public class MergeSort {
         }
     }
 
+    /**
+     * 另一种方式的merge
+     * @param arr
+     * @param helper
+     * @param l
+     * @param mid
+     * @param r
+     */
+    public static void merge1(int[] arr,int[] helper,int l,int mid,int r){
+        for (int i=l;i<=r;i++){
+            helper[i]=arr[i];
+        }
+        int i=l,j=mid+1;
+        for(int k=l;k<=r;k++){
+            if (i>mid){
+                arr[k]=helper[j++];
+            }else if (j>r){
+                arr[k]=helper[i++];
+            }else if(helper[i]<=helper[j]){
+                arr[k]=helper[i++];
+            }else{
+                arr[k]=helper[j++];
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BaseUtil.testTemplate("sort.MergeSort","mergeSort");
         List<String> list1 = new ArrayList<>();

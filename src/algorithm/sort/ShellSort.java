@@ -3,7 +3,7 @@ package sort;
 import util.BaseUtil;
 
 /**
- * 希尔排序
+ * 希尔排序,插入排序的进阶版
  * @author xuyh
  * @date 2019/5/31
  */

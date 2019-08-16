@@ -32,24 +32,37 @@ public class CountSort {
         }
     }
 
-    public static int[] countSort1(int[] arr){//未能实现稳定排序
+    public static int[] countSort1(int[] arr){
         if(arr==null||arr.length<2){
             return arr;
         }
-        int min=Integer.MAX_VALUE;
-        int max=Integer.MIN_VALUE;
+//        int min=Integer.MAX_VALUE;
+//        int max=Integer.MIN_VALUE;
+//        for(int i=0;i<arr.length;i++){
+//            min=Math.min(arr[i],min);
+//            max= Math.max(arr[i],max);
+//        }
+        int min=0,max=0;
         for(int i=0;i<arr.length;i++){
-            min=Math.min(arr[i],min);
-            max= Math.max(arr[i],max);
+            if(arr[i]<min){
+                min=arr[i];
+                continue;
+            }
+            if(arr[i]>max){
+                max=arr[i];
+            }
         }
         int[] bucket=new int[max-min+1];
         for(int i=0;i<arr.length;i++){
             bucket[arr[i]-min]++;
         }
         for(int j=1;j<bucket.length;j++){
+            //累加是为了计算每个桶内的数在排好序的数组中的终止索引
             bucket[j]=bucket[j-1]+bucket[j];
         }
+        //辅助数组
         int[] res=new int[arr.length];
+        //原数组逆序遍历，保证稳定性
         for(int i=arr.length-1;i>=0;i--){
             int pos=--bucket[arr[i]-min];
             res[pos]=arr[i];
@@ -58,9 +71,9 @@ public class CountSort {
     }
 
     public static void main(String[] args) {
-//        BaseUtil.testTemplate("CountSort","countSort1");
-        int[] arr = {3,2, 4,2, 1, 2, 2};
-        int[] ints = countSort1(arr);
-        BaseUtil.printArray(ints);
+        BaseUtil.testTemplate("sort.CountSort","countSort1");
+//        int[] arr = {-14,27,0,10,12,-25,-26};
+//        int[] ints = countSort1(arr);
+//        BaseUtil.printArray(ints);
     }
 }

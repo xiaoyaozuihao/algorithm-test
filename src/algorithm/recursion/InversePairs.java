@@ -74,5 +74,6 @@ public class InversePairs {
         BaseUtil.printArray(array);
         inversePairs(array);
         BaseUtil.printArray(array);
+        System.out.println("逆序对的数量："+count);
     }
 }

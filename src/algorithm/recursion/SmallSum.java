@@ -34,8 +34,8 @@ public class SmallSum {
         while(p1<=mid&&p2<=r){
             res+=arr[p1]<arr[p2]?(r-p2+1)*arr[p1]:0;//计算小和以右侧为基准，所以一定要保证右侧的角标先达到最大
             help[i++]=arr[p1]<arr[p2]?arr[p1++]:arr[p2++];
-//            help[i++]=arr[p1]>arr[p2]?arr[p2++]:arr[p1++];
             // 错误写法一定要注意：看似和上面的写法等效，但是在比较arr[p1]和arr[p2]相等的时候，会使得p1的脚标先越界，从而少计算了小和。
+//            help[i++]=arr[p1]>arr[p2]?arr[p2++]:arr[p1++];
         }
         while(p1<=mid){
             help[i++]=arr[p1++];
