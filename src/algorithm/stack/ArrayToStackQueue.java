@@ -28,23 +28,31 @@ public class ArrayToStackQueue {
 
         public void push(int obj) {
             if (index == arr.length) {
-                throw new ArrayIndexOutOfBoundsException("the Stack is full");
+                throw new RuntimeException("the Stack is full");
             }
             arr[index++] = obj;
         }
 
         public int pop() {
             if (index == 0) {
-                throw new ArrayIndexOutOfBoundsException("the stack is empty");
+                throw new RuntimeException("the stack is empty");
             }
             return arr[--index];
+        }
+
+        public int size() {
+            return index;
+        }
+
+        public boolean isEmpty() {
+            return index == 0;
         }
     }
 
     public static class ArrayQueue {
         private Integer[] arr;
-        private int start;
-        private int end;
+        private int first;
+        private int last;
         private int size;
 
         public ArrayQueue(int initSize) {
@@ -52,8 +60,8 @@ public class ArrayToStackQueue {
                 throw new IllegalArgumentException("the initSize is less than 0");
             }
             arr = new Integer[initSize];
-            start = 0;
-            end = 0;
+            first = 0;
+            last = 0;
             size = 0;
         }
 
@@ -61,7 +69,7 @@ public class ArrayToStackQueue {
             if (size == 0) {
                 return null;
             }
-            return arr[start];
+            return arr[first];
         }
 
         public void push(int obj) {
@@ -69,8 +77,8 @@ public class ArrayToStackQueue {
                 throw new ArrayIndexOutOfBoundsException("the queue is full");
             }
             size++;
-            arr[end] = obj;
-            end = end == arr.length - 1 ? 0 : end + 1;
+            arr[last] = obj;
+            last = nextIndex(arr.length,last);
         }
 
         public int poll() {
@@ -78,19 +86,23 @@ public class ArrayToStackQueue {
                 throw new ArrayIndexOutOfBoundsException("the queue is empty");
             }
             size--;
-            int tmp =start;
-            start = start == arr.length - 1 ? 0 : start + 1;
+            int tmp = first;
+            first = nextIndex(arr.length,first);
             return arr[tmp];
+        }
+
+        public int nextIndex(int size, int index) {
+            return index == size - 1 ? 0 : index + 1;
         }
     }
 
     public static void main(String[] args) {
-        ArrayStack arrayStack = new ArrayStack(5);
-        arrayStack.push(1);
-        arrayStack.push(2);
-        arrayStack.push(3);
-        System.out.println(arrayStack.pop());
-        ArrayQueue arrayQueue=new ArrayQueue(8);
+//        ArrayStack arrayStack = new ArrayStack(5);
+//        arrayStack.push(1);
+//        arrayStack.push(2);
+//        arrayStack.push(3);
+//        System.out.println(arrayStack.pop());
+        ArrayQueue arrayQueue = new ArrayQueue(8);
         arrayQueue.push(1);
         arrayQueue.push(3);
         arrayQueue.push(5);
@@ -99,6 +111,5 @@ public class ArrayToStackQueue {
         arrayQueue.push(4);
         System.out.println(arrayQueue.poll());
         System.out.println(arrayQueue.peek());
-
     }
 }

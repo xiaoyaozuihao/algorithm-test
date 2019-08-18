@@ -66,7 +66,7 @@ public class MaxGap {
         int times = 10000;
         boolean succeed = true;
         for (int i = 0; i < times; i++) {
-            int[] array = BaseUtil.generateRandomArray(100, 40);
+            int[] array = BaseUtil.generateRandomArray(1000, 1000);
             int[] array1 = BaseUtil.copyArray(array);
             if (maxGap(array) != comparator(array1)) {
                 succeed = false;

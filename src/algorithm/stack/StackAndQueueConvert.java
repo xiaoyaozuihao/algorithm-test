@@ -85,6 +85,14 @@ public class StackAndQueueConvert {
             return popStack.peek();
         }
 
+        //只要popStack为空，就可以执行此操作，至于在哪个操作中执行不重要。
+        public void swapData(){
+            if(popStack.isEmpty()){
+                while (!pushStack.isEmpty()){
+                    popStack.push(pushStack.pop());
+                }
+            }
+        }
     }
 
 }
