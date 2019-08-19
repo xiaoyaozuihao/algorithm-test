@@ -27,18 +27,18 @@ public class MaxGap {
         }
         int[] mins = new int[len + 1];
         int[] maxs = new int[len + 1];
-        boolean[] hasnum = new boolean[len + 1];
+        boolean[] hasNum = new boolean[len + 1];
         int bid;
         for (int i = 0; i < len; i++) {
             bid = bucket(arr[i], len, min, max);
-            mins[bid] = hasnum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
-            maxs[bid] = hasnum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
-            hasnum[bid] = true;
+            mins[bid] = hasNum[bid] ? Math.min(arr[i], mins[bid]) : arr[i];
+            maxs[bid] = hasNum[bid] ? Math.max(arr[i], maxs[bid]) : arr[i];
+            hasNum[bid] = true;
         }
         int res = 0;
         int lastMax = maxs[0];
         for (int i = 1; i <= len; i++) {
-            if (hasnum[i]) {
+            if (hasNum[i]) {
                 res = Math.max(res, mins[i] - lastMax);
                 lastMax = maxs[i];
             }

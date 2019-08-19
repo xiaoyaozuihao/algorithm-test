@@ -1,43 +1,61 @@
 package util;
 
+import binaryTree.TreeNode;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author xuyh
  * @date 2019/5/12
  */
 public class Test {
     public static void main(String[] args) {
-//        BaseUtil.testTemplate("util.Test","sort");
+        TreeNode head = new TreeNode(1);
+        head.next = new TreeNode(2);
+        head.next.next = new TreeNode(3);
+        head.next.next.next = new TreeNode(4);
+        head.next.next.next.next = new TreeNode(5);
+        head.next.next.next.next.next = new TreeNode(6);
+        head.random = head.next.next.next.next.next; // 1 -> 6
+        head.next.random = head.next.next.next.next.next; // 2 -> 6
+        head.next.next.random = head.next.next.next.next; // 3 -> 5
+        head.next.next.next.random = head.next.next; // 4 -> 3
+        head.next.next.next.next.random = null; // 5 -> null
+        head.next.next.next.next.next.random = head.next.next.next; // 6 -> 4
+        printRandomList(head);
+        copyListWithRandom(head);
+        printRandomList(head);
     }
 
-    public static void sort(int[] arr){
-        if(arr==null||arr.length<2){
-            return;
+    public static TreeNode copyListWithRandom(TreeNode head) {
+        Map<TreeNode, TreeNode> map = new HashMap<>();
+        TreeNode cur = head;
+        while (cur != null) {
+            map.put(cur, new TreeNode(cur.val));
+            cur = cur.next;
         }
-        quickSort(arr,0,arr.length-1);
+        cur = head;
+        for (TreeNode treeNode : map.keySet()) {
+            map.get(treeNode).next = map.get(treeNode.next);
+            map.get(treeNode).random = map.get(treeNode.random);
+        }
+        return map.get(cur);
     }
 
-    private static void quickSort(int[] arr, int l, int r) {
-        if(l<r){
-            BaseUtil.swap(arr,l+(int)Math.random()*(r-l+1),r);
-            int[] p = partition(arr, l, r);
-            quickSort(arr,l,p[0]-1);
-            quickSort(arr,p[1]+1,r);
+    public static void printRandomList(TreeNode head) {
+        TreeNode cur = head;
+        System.out.print("order: ");
+        while (cur != null) {
+            System.out.print(cur.val+" ");
+            cur = cur.next;
         }
-    }
-
-    private static int[] partition(int[] arr, int l, int r) {
-        int less=l-1;
-        int more=r;
-        while(l<more){
-            if(arr[l]<arr[r]){
-                BaseUtil.swap(arr,++less,l++);
-            }else if(arr[l]>arr[r]){
-                BaseUtil.swap(arr,--more,l);
-            }else {
-                l++;
-            }
+        System.out.print("|random: ");
+        cur = head;
+        while (cur != null) {
+            System.out.print(cur.random==null?"- ":cur.random.val+" ");
+            cur = cur.next;
         }
-        BaseUtil.swap(arr,more,r);
-        return new int[]{less+1,more};
+        System.out.println();
     }
 }

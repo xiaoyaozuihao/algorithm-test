@@ -58,6 +58,32 @@ public class ZigZagPrintMatrix {
             hang++;
         }
         return arr;
+
+
+//        int cl=matrix[0].length;
+//        for(int i=0,j=-1;i<matrix.length;i++){
+//            if(i%2==0){
+//                while(++j<m){
+//                    System.out.print(matrix[i][j]+" ");
+//                }
+//                System.out.println();
+//            }else{
+//                while(--j>=0){
+//                    System.out.print(matrix[i][j]+" ");
+//                }
+//                System.out.println();
+//            }
+//        }
+//        for(int i=0;i<matrix.length;i++){
+//            for(int j=0;j<matrix[0].length;j++){
+//                if(i%2==0){
+//                    System.out.print(matrix[i][j]+" ");
+//                }else{
+//                    System.out.print(matrix[i][cl-1-j]+" ");
+//                }
+//            }
+//            System.out.println();
+//        }
     }
 
     public static void main(String[] args) {

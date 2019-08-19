@@ -1,5 +1,8 @@
 package util;
 
+import binaryTree.DoubleNode;
+import binaryTree.TreeNode;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -141,6 +144,31 @@ public class BaseUtil {
 //        arr[i] ^= arr[j];
 //        arr[j] = arr[i] ^ arr[j];
 //        arr[i] ^= arr[j];
+    }
+
+    public static void printLinkedList(TreeNode head) {
+        System.out.print("Linked list:");
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+    public static void printDoubleLinkedList(DoubleNode head) {
+        System.out.print("DoubleLinked list:正序 ");
+        DoubleNode end = null;
+        while (head != null) {
+            System.out.print(head.value + " ");
+            end = head;
+            head = head.next;
+        }
+        System.out.print("|逆序 ");
+        while (end != null) {
+            System.out.print(end.value + " ");
+            end = end.pre;
+        }
+        System.out.println();
     }
 
     public static Integer[] toObject(int[] array) {
