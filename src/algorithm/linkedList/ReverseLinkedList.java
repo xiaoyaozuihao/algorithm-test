@@ -25,6 +25,17 @@ public class ReverseLinkedList {
         return pre;
     }
 
+    //单链表反转，递归解法
+    public static TreeNode reverseList1(TreeNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        TreeNode cur = reverseList1(head.next);
+        head.next.next = head;
+        head.next = null;
+        return cur;
+    }
+
 
     public static DoubleNode reverseDoubleNode(DoubleNode head) {
         DoubleNode next;

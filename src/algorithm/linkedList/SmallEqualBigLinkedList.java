@@ -1,6 +1,7 @@
 package linkedList;
 
 import binaryTree.TreeNode;
+import util.BaseUtil;
 
 /**
  * 将单向链表按某值划分为左边小，中间相等，右边大的形式
@@ -104,14 +105,6 @@ public class SmallEqualBigLinkedList {
         return sh!=null?sh:eh!=null?eh:bh;
     }
 
-    public static void printLinkedList(TreeNode head){
-        while(head!=null){
-            System.out.print(head.val +" ");
-            head=head.next;
-        }
-        System.out.println();
-    }
-
     public static void main(String[] args) {
         TreeNode head1 = new TreeNode(7);
         head1.next = new TreeNode(9);
@@ -123,6 +116,6 @@ public class SmallEqualBigLinkedList {
 //        TreeNode node = listPartition1(head1, 3);
 //        printLinkedList(node);
         TreeNode node1 = listPartition2(head1, 3);
-        printLinkedList(node1);
+        BaseUtil.printLinkedList(node1);
     }
 }
