@@ -1,4 +1,4 @@
-package dp;
+package greedy;
 
 /**
  * 背包问题

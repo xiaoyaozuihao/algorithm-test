@@ -67,6 +67,7 @@ public class FindFirstIntersectNode {
         TreeNode cur1=head1;
         TreeNode cur2=head2;
         int n=0;
+        //分别遍历两个链表，找到他们各自的最后一个节点，如果不相等，一定不相交。
         while(cur1.next!=null){
             n++;
             cur1=cur1.next;
@@ -78,6 +79,7 @@ public class FindFirstIntersectNode {
         if(cur1!=cur2){
             return null;
         }
+        //如果相交，让长的链表先走两个链表的长度差，然后两个一起走。
         cur1=n>0?head1:head2;
         cur2=cur1==head1?head2:head1;
         n = Math.abs(n);
@@ -93,6 +95,7 @@ public class FindFirstIntersectNode {
     }
 
     public static TreeNode getLoopNode(TreeNode head){
+        //三个以上节点的链表才可能构成环
         if(head==null||head.next==null||head.next.next==null){
             return null;
         }
