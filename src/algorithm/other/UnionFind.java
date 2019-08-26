@@ -10,12 +10,7 @@ import java.util.Stack;
  * @date 2019/5/21
  */
 public class UnionFind {
-    public static void main(String[] args) {
-        byte[] bype=new byte[1000*1024*1024];
-        System.out.println("最大内存："+Runtime.getRuntime().maxMemory()/1024/1024+"M");
-        System.out.println("可用内存："+Runtime.getRuntime().freeMemory()/1024/1024+"M");
-        System.out.println("已使用内存："+Runtime.getRuntime().totalMemory()/1024/1024+"M");
-    }
+
     public static class Node{
        //whatever you like
     }

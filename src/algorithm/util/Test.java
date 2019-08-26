@@ -1,71 +1,71 @@
 package util;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import binaryTree.TreeNode;
 
 /**
  * @author xuyh
  * @date 2019/5/12
  */
 public class Test {
-
     public static void main(String[] args) {
+        TreeNode head = new TreeNode(1);
+        head.left = new TreeNode(2);
+        head.right = new TreeNode(3);
+        head.left.left = new TreeNode(4);
+        head.left.right = new TreeNode(5);
+        head.right.left = new TreeNode(6);
+        Test test = new Test();
+        System.out.println(test.countNodes(head));
+        System.out.println(test.getCBTNum(head));
     }
 
-    static class UnionFind{
-        static class Node{
+    public int getCBTNum(TreeNode node){
+        if(node==null){
+            return 0;
+        }
+        return bs(node,1,mostLeftLevel(node,1));
+    }
 
+    private int bs(TreeNode node, int level, int height) {
+        if(level==height){
+            return 1;
         }
-        private Map<Node,Node> fatherMap;
-        private Map<Node,Integer> sizeMap;
-        public UnionFind(List<Node> list){
-            fatherMap=new HashMap<>();
-            sizeMap=new HashMap<>();
-            for (Node node : list) {
-                fatherMap.put(node,node);
-                sizeMap.put(node,1);
-            }
-        }
-        public void union(Node n1,Node n2){
-            if(n1==null||n2==null){
-                return;
-            }
-            Node node1 = findHead(n1);
-            Node node2 = findHead(n2);
-            if(node1!=node2){
-                Integer size1 = sizeMap.get(node1);
-                Integer size2 = sizeMap.get(node2);
-                if(size1<=size2){
-                    fatherMap.put(node1,node2);
-                    sizeMap.put(node2,size1+size2);
-                }else{
-                    fatherMap.put(node2,node1);
-                    sizeMap.put(node1,size1+size2);
-                }
-            }
+        if(mostLeftLevel(node.right,level+1)==height){
+            return (1<<(height-level))+bs(node.right,level+1,height);
+        }else{
+            return (1<<(height-level-1))+bs(node.left,level+1,height);
         }
 
-        public boolean isSameSet(Node n1,Node n2){
-            return findHead(n1)==findHead(n2);
+    }
+
+    private int mostLeftLevel(TreeNode node, int level) {
+        while(node!=null){
+            node=node.left;
+            level++;
         }
-        public Node findHead(Node node){
-//            Stack<Node> stack=new Stack<>();
-//            while (fatherMap.get(node) != node) {
-//                stack.push(node);
-//                node=fatherMap.get(node);
-//            }
-//            while(!stack.isEmpty()){
-//                fatherMap.put(stack.pop(),node);
-//            }
-//            return node;
-            Node fatherNode = fatherMap.get(node);
-            if(fatherNode!=node){
-                fatherNode=findHead(fatherNode);
-            }
-            fatherMap.put(node,fatherNode);
-            return fatherNode;
+        return level-1;
+    }
+
+    public int countNodes(TreeNode node) {
+        if (node == null) {
+            return 0;
         }
+        int leftDepth = getDepth(node.left);
+        int rightDepth = getDepth(node.right);
+        if (leftDepth == rightDepth) {
+            return (1 << leftDepth) + countNodes(node.right);
+        } else {
+            return (1 << rightDepth) + countNodes(node.left);
+        }
+    }
+
+    public int getDepth(TreeNode node) {
+        int res = 0;
+        while (node != null) {
+            node = node.left;
+            res++;
+        }
+        return res;
     }
 }
 

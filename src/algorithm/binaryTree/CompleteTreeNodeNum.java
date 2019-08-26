@@ -33,6 +33,7 @@ public class CompleteTreeNodeNum {
         return level-1;
     }
 
+    //更简洁的方法
     public static int countNodes(TreeNode root){
         if(root==null){
             return 0;

@@ -6,14 +6,21 @@ package other;
  * @date 2019/5/23
  */
 public class TrieTree {
+    /**
+     * 经典前缀树以字母为边。以节点记录字符串的前缀数量以及以该字母结束的字符串数量。
+     */
     public static class TrieNode{
+        //代表以当前字母为前缀的字符串数量
         public int path;
+        //代表以当前字母结束的字符串的数量
         public int end;
+        //代表以当前字母开始的路径。
         public TrieNode[] nexts;
         public TrieNode(){
             path=0;
             end=0;
-            nexts=new TrieNode[26];//默认都是小写字母
+            //默认26个小写字母，代表26条路径，某条路径为空代表某个字母不存在。
+            nexts=new TrieNode[26];
         }
     }
 
