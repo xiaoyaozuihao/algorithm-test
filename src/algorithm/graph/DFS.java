@@ -18,7 +18,7 @@ public class DFS {
         HashSet<Node> set=new HashSet<>();
         deque.push(node);
         set.add(node);
-        System.out.println(node.value);
+        System.out.print(node.value+ " ");
         while(!deque.isEmpty()){
             node=deque.pop();
             for(Node next:node.nexts){
@@ -26,7 +26,7 @@ public class DFS {
                     deque.push(node);
                     deque.push(next);
                     set.add(next);
-                    System.out.println(next.value);
+                    System.out.print(next.value+" ");
                     break;
                 }
             }

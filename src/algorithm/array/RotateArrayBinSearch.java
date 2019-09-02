@@ -8,6 +8,9 @@ package array;
 public class RotateArrayBinSearch {
 
     public static int binarySearch(int[] nums,int target){
+        if(nums==null||nums.length==0){
+            return -1;
+        }
         int l=0,r=nums.length-1,mid;
         while(l<=r){
             mid=l+((r-l)>>1);

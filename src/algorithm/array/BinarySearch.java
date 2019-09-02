@@ -33,9 +33,9 @@ public class BinarySearch {
             if(arr[mid]==obj){
                 return mid;
             }else if(arr[mid]<obj){
-                binarySearch1(arr,obj,mid+1,high);
+                return binarySearch1(arr,obj,mid+1,high);
             }else{
-                binarySearch1(arr,obj,low,mid-1);
+                return binarySearch1(arr,obj,low,mid-1);
             }
         }
         return -1;
@@ -44,6 +44,8 @@ public class BinarySearch {
 
 
     public static void main(String[] args) {
-
+        int[] arr= new int[]{2,3,4,5,6,7,8,20,43,54};
+        System.out.println(binarySearch(arr, 3));
+        System.out.println(binarySearch1(arr,20,0,arr.length-1));
     }
 }

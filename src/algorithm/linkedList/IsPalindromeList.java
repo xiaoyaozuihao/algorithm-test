@@ -102,7 +102,9 @@ public class IsPalindromeList {
 
     //在寻找中点的同时反转前半部分，效率更优
     public static boolean isPalindromeList3(TreeNode head) {
-        if (head == null || head.next == null) return true;
+        if (head == null || head.next == null) {
+            return true;
+        }
         TreeNode slow = head, fast = head.next, pre = null, prepre = null;
         while (fast != null && fast.next != null) {
             //反转前半段链表
@@ -154,26 +156,26 @@ public class IsPalindromeList {
         return false;
     }
 
-    public static boolean isPalindromeList5(TreeNode head){
-        if(head==null){
+    public static boolean isPalindromeList5(TreeNode head) {
+        if (head == null) {
             return true;
         }
-        TreeNode slow=head,fast=head,pre=null,temp=null;
-        while(fast!=null&&fast.next!=null){
-            fast= fast.next.next;
-            temp=slow.next;
-            slow.next=pre;
-            pre=slow;
-            slow=temp;
+        TreeNode slow = head, fast = head, pre = null, temp = null;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            temp = slow.next;
+            slow.next = pre;
+            pre = slow;
+            slow = temp;
         }
-        fast=fast==null?slow:slow.next;
-        slow=pre;
-        while(fast!=null){
-            if(fast.val!=slow.val){
+        fast = fast == null ? slow : slow.next;
+        slow = pre;
+        while (fast != null) {
+            if (fast.val != slow.val) {
                 return false;
             }
-            fast=fast.next;
-            slow=slow.next;
+            fast = fast.next;
+            slow = slow.next;
         }
         return true;
     }

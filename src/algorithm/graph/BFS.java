@@ -20,7 +20,7 @@ public class BFS {
         set.add(node);
         while(!queue.isEmpty()){
             node=queue.poll();
-            System.out.println(node.value);
+            System.out.print(node.value+" ");
             for(Node next:node.nexts){
                 if(!set.contains(next)){
                     queue.offer(next);

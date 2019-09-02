@@ -6,6 +6,10 @@ package graph;
  * @date 2019/5/30
  */
 public class GraphGenerator {
+    public static void main(String[] args) {
+
+    }
+
     //生成图，arr矩阵中三个要素，weight权重，from入节点的编号，to出节点的编号
     public static Graph generateGraph(Integer[][] arr){
         Graph graph=new Graph();

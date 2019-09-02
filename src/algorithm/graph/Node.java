@@ -4,6 +4,7 @@ package graph;
 import java.util.ArrayList;
 
 /**
+ * 图的结点定义
  * @author xuyh
  * @date 2019/5/22
  */
