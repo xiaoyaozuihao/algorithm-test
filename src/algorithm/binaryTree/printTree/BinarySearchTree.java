@@ -1,5 +1,7 @@
 package binaryTree.printTree;
 
+import binaryTree.printTree.interfaces.BinaryTreeInfo;
+
 import java.util.Comparator;
 
 @SuppressWarnings("unchecked")
@@ -93,5 +95,10 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
     public Object string(Object node) {
         return ((Node)node).element;
     }
+
+    public int getSize() {
+        return size;
+    }
     /********** BinaryTreeInfo **********/
+
 }

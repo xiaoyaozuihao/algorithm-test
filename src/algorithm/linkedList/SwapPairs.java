@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
 /**
  * 两两交换链表中的节点

@@ -1,6 +1,6 @@
-package binaryTree.printTree;
+package binaryTree.printTree.utils;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
 /**
  * 打印一颗二叉树，横向打印
@@ -9,7 +9,7 @@ import binaryTree.TreeNode;
  */
 public class PrintBinaryTree {
 
-    public static void printTree(TreeNode node){
+    public static void print(TreeNode node){
         System.out.println("BinaryTree:");
         printInOrder(node,0,"H",17);
         System.out.println();
@@ -51,7 +51,7 @@ public class PrintBinaryTree {
         head.right.left = new TreeNode(55555555);
         head.right.right = new TreeNode(66);
         head.left.left.right = new TreeNode(777);
-        printTree(head);
+        print(head);
 
         head = new TreeNode(1);
         head.left = new TreeNode(2);
@@ -60,7 +60,7 @@ public class PrintBinaryTree {
         head.right.left = new TreeNode(5);
         head.right.right = new TreeNode(6);
         head.left.left.right = new TreeNode(7);
-        printTree(head);
+        print(head);
 
         head = new TreeNode(1);
         head.left = new TreeNode(1);
@@ -69,6 +69,6 @@ public class PrintBinaryTree {
         head.right.left = new TreeNode(1);
         head.right.right = new TreeNode(1);
         head.left.left.right = new TreeNode(1);
-        printTree(head);
+        print(head);
     }
 }

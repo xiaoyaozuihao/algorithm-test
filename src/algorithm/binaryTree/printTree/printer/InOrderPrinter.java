@@ -1,5 +1,6 @@
-package binaryTree.printTree;
+package binaryTree.printTree.printer;
 
+import binaryTree.printTree.interfaces.BinaryTreeInfo;
 
 /**
  ┌──800
@@ -21,7 +22,7 @@ package binaryTree.printTree;
  * @author MJ Lee
  *
  */
-public class InorderPrinter extends Printer {
+public class InOrderPrinter extends Printer {
     private static String rightAppend;
     private static String leftAppend;
     private static String blankAppend;
@@ -34,7 +35,7 @@ public class InorderPrinter extends Printer {
         lineAppend = "│" + Strings.blank(length);
     }
 
-    public InorderPrinter(BinaryTreeInfo tree) {
+    public InOrderPrinter(BinaryTreeInfo tree) {
         super(tree);
     }
 

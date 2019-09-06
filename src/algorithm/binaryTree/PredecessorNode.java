@@ -1,5 +1,7 @@
 package binaryTree;
 
+import binaryTree.printTree.TreeNode;
+
 /**
  * 获取二叉树的前驱节点
  * 在二叉树的中序遍历的序列中，node的前一个节点叫作node的前驱节点。

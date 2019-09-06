@@ -1,9 +1,14 @@
 package binaryTree.printTree;
 
+import binaryTree.printTree.file.Files;
+import binaryTree.printTree.interfaces.BinaryTreeInfo;
+import binaryTree.printTree.utils.BinaryTreesUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 测试二叉树打印
  * @author xuyh
  * @date 2019/5/10
  */
@@ -17,19 +22,19 @@ public class TestPrintTree {
     static void tree1() {
         for (BinarySearchTree<Integer> bst : bsts) {
             // PrintStyle.LEVEL_ORDER（层序打印）
-            BinaryTrees.println(bst);
+            BinaryTreesUtil.println(bst);
 
             System.out.println(LINE);
 
-            // PrintStyle.INORDER（中序打印）
-            BinaryTrees.println(bst, BinaryTrees.PrintStyle.INORDER);
+            // PrintStyle.IN_ORDER（中序打印）
+            BinaryTreesUtil.println(bst, BinaryTreesUtil.PrintStyle.IN_ORDER);
 
             System.out.println(LINE);
         }
     }
 
+    // other usage
     static void tree2() {
-        // other usage
         BinaryTreeInfo info1 = new BinaryTreeInfo() {
             @Override
             public Object root() {
@@ -75,9 +80,9 @@ public class TestPrintTree {
                 return node;
             }
         };
-        BinaryTrees.println(info1);
+        BinaryTreesUtil.println(info1);
         System.out.println(LINE);
-        BinaryTrees.println(info1, BinaryTrees.PrintStyle.INORDER);
+        BinaryTreesUtil.println(info1, BinaryTreesUtil.PrintStyle.IN_ORDER);
         System.out.println(LINE);
 
 
@@ -127,14 +132,15 @@ public class TestPrintTree {
                 return node;
             }
         };
-        BinaryTrees.println(info2);
+        BinaryTreesUtil.println(info2);
         System.out.println(LINE);
-        BinaryTrees.println(info2, BinaryTrees.PrintStyle.INORDER);
+        BinaryTreesUtil.println(info2, BinaryTreesUtil.PrintStyle.IN_ORDER);
     }
 
+    //write to file
     static void tree3() {
-        // String string = BinaryTrees.printString(bsts.get(0));
-        // Files.writeToFile("F://1.txt", string);
+         String string = BinaryTreesUtil.printString(bsts.get(0));
+         Files.writeToFile("F://1.txt", string);
     }
 
     static final String LINE = "----------------------------------";
@@ -144,7 +150,7 @@ public class TestPrintTree {
         if (ints == null) {
             return null;
         }
-        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
         for (Integer integer : ints) {
             bst.add(integer);
         }
@@ -164,7 +170,7 @@ public class TestPrintTree {
         // 二叉树数量
         int bstCount = 3;
         for (int i = 0; i < bstCount; i++) {
-            BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+            BinarySearchTree<Integer> bst = new BinarySearchTree<>();
             bsts.add(bst);
 
             // 二叉树的节点数量

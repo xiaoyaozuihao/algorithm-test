@@ -1,6 +1,7 @@
-package binaryTree.printTree;
+package binaryTree.printTree.interfaces;
 
 /**
+ * 二叉树接口定义
  * @author xuyh
  * @date 2019/5/10
  */

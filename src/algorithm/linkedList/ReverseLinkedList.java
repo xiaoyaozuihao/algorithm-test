@@ -1,7 +1,7 @@
 package linkedList;
 
 import binaryTree.DoubleNode;
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 import util.BaseUtil;
 
 /**

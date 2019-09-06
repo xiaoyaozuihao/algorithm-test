@@ -1,5 +1,7 @@
 package binaryTree;
 
+import binaryTree.printTree.TreeNode;
+
 /**
  * 完全二叉树的节点数量
  * @author xuyh

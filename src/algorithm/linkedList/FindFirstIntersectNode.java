@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
 /**
  * 两个单链表相交的一系列问题

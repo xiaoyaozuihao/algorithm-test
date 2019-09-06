@@ -1,7 +1,7 @@
 package util;
 
 import binaryTree.DoubleNode;
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;

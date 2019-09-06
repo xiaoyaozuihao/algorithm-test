@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
 /**
  * 打印两个有序链表的公共部分

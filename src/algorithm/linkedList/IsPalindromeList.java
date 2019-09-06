@@ -1,6 +1,6 @@
 package linkedList;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
 import java.util.Stack;
 

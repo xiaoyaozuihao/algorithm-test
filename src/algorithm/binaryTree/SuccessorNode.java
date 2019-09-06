@@ -1,5 +1,7 @@
 package binaryTree;
 
+import binaryTree.printTree.TreeNode;
+
 /**
  * 在二叉树中找到一个节点的后继节点，每个节点都有一个父节点的指针
  * 在二叉树的中序遍历的序列中，node的下一个节点叫作node的后继节点。

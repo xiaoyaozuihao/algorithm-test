@@ -1,6 +1,7 @@
 package leetcode;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
+import util.BaseUtil;
 
 /**
  * 链表两数相加
@@ -77,8 +78,8 @@ public class Eg2 {
         l2.next=new TreeNode(5);
         l2.next.next=new TreeNode(2);
         TreeNode treeNode = addTwoNumbers(l1, l2);
-        TreeNode.printListNode(treeNode);
+        BaseUtil.printLinkedList(treeNode);
         TreeNode dfs = dfs(l1, l2, 0);
-        TreeNode.printListNode(dfs);
+        BaseUtil.printLinkedList(dfs);
     }
 }

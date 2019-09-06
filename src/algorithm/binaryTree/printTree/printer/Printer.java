@@ -1,4 +1,6 @@
-package binaryTree.printTree;
+package binaryTree.printTree.printer;
+
+import binaryTree.printTree.interfaces.BinaryTreeInfo;
 
 /**
  * @author xuyh

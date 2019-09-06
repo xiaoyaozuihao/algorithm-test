@@ -1,8 +1,9 @@
 package util;
 
-import binaryTree.TreeNode;
+import binaryTree.printTree.TreeNode;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author xuyh
@@ -10,34 +11,34 @@ import java.util.Stack;
  */
 public class Test {
     public static void main(String[] args) {
-        TreeNode node=new TreeNode(1);
-        node.left=new TreeNode(2);
-        node.right=new TreeNode(3);
-        node.left.left=new TreeNode(4);
-        node.left.right=new TreeNode(5);
-        node.right.left=new TreeNode(6);
-        node.right.right=new TreeNode(7);
-        postTraversal(node);
     }
 
-    public static void postTraversal(TreeNode head) {
-        if (head == null) {
-            return;
+    public static boolean isCBT(TreeNode node){
+        if(node==null){
+            return true;
         }
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(head);
-        TreeNode cur;
-        while (!stack.isEmpty()) {
-            cur = stack.peek();
-            if(cur.left!=null&&cur.left!=head&&cur.right!=head){
-                stack.push(cur.left);
-            }else if(cur.right!=null&&cur.right!=head){
-                stack.push(cur.right);
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.offer(node);
+        TreeNode left;
+        TreeNode right;
+        boolean isLeaf=false;
+        while(!queue.isEmpty()){
+            TreeNode cur = queue.poll();
+            left=cur.left;
+            right=cur.right;
+            if((isLeaf&&(left!=null||right!=null))||(left==null&&right!=null)){
+                return false;
+            }
+            if(left!=null){
+                queue.offer(left);
+            }
+            if(right!=null){
+                queue.offer(right);
             }else{
-                head=stack.pop();
-                System.out.println(head.val+" ");
+                isLeaf=true;
             }
         }
+        return true;
     }
 }
 

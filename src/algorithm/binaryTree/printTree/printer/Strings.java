@@ -1,4 +1,4 @@
-package binaryTree.printTree;
+package binaryTree.printTree.printer;
 
 /**
  * @author xuyh
