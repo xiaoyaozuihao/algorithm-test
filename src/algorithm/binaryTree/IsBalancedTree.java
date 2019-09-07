@@ -62,7 +62,7 @@ public class IsBalancedTree {
         return Math.min(hl,hr)+1;
     }
 
-    //方法3，使用boolean数组保存是否平衡。
+    //方法3，使用boolean数组保存是否平衡,多使用level参数
     public static boolean isBalancedTree2(TreeNode node){
         boolean[] res=new boolean[1];
         res[0]=true;
@@ -88,7 +88,7 @@ public class IsBalancedTree {
         return Math.max(hl,hr);
     }
 
-    //方法4
+    //方法4，不使用level参数
     public static boolean isBalancedTree3(TreeNode node){
         boolean[] res=new boolean[1];
         res[0]=true;
@@ -101,13 +101,20 @@ public class IsBalancedTree {
             return 0;
         }
         int left = func(node.left, res);
+        if(!res[0]){
+            return left+1;
+        }
         int right= func(node.right,res);
+        if(!res[0]){
+            return right+1;
+        }
         if(Math.abs(left-right)>1){
             res[0]=false;
         }
-        return Math.abs(left-right)+1;
+        return Math.max(left,right)+1;
     }
 
+    //精炼的写法
     public static boolean isBalancedTree4(TreeNode root) {
         if(root == null){
             return true;

@@ -58,6 +58,28 @@ public class CompleteTreeNodeNum {
         return depth;
     }
 
+    static int count=0;
+    public static int countNodes1(TreeNode node){
+        if(node==null){
+            return 0;
+        }
+        helper(node);
+        return count;
+    }
+
+    private static void helper(TreeNode node) {
+        if(node==null){
+            return;
+        }
+        count++;
+        helper(node.left);
+        helper(node.right);
+    }
+
+    //最简洁写法
+    public static int countNodes2(TreeNode node){
+        return node==null?0:countNodes2(node.left)+countNodes2(node.right)+1;
+    }
 
     public static void main(String[] args) {
         TreeNode head = new TreeNode(1);

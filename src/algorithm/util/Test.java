@@ -1,10 +1,5 @@
 package util;
 
-import binaryTree.printTree.TreeNode;
-
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
  * @author xuyh
  * @date 2019/5/12
@@ -13,32 +8,29 @@ public class Test {
     public static void main(String[] args) {
     }
 
-    public static boolean isCBT(TreeNode node){
-        if(node==null){
-            return true;
+    public static int findOneLessValue(int[] arr){
+        if(arr==null||arr.length==0){
+            return -1;
         }
-        Queue<TreeNode> queue=new LinkedList<>();
-        queue.offer(node);
-        TreeNode left;
-        TreeNode right;
-        boolean isLeaf=false;
-        while(!queue.isEmpty()){
-            TreeNode cur = queue.poll();
-            left=cur.left;
-            right=cur.right;
-            if((isLeaf&&(left!=null||right!=null))||(left==null&&right!=null)){
-                return false;
-            }
-            if(left!=null){
-                queue.offer(left);
-            }
-            if(right!=null){
-                queue.offer(right);
+        if(arr.length==1||arr[0]<arr[1]){
+            return 0;
+        }
+        if(arr[arr.length-1]<arr[arr.length-2]){
+            return arr.length-1;
+        }
+        int left=1;
+        int right=arr.length-2;
+        while(left<right){
+            int mid=left+((right-left)>>1);
+            if(arr[mid]>arr[mid-1]){
+                right=mid-1;
+            }else if(arr[mid]>arr[mid+1]){
+                left=mid+1;
             }else{
-                isLeaf=true;
+                return mid;
             }
         }
-        return true;
+        return left;
     }
 }
 
