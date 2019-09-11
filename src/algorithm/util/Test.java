@@ -8,29 +8,34 @@ public class Test {
     public static void main(String[] args) {
     }
 
-    public static int findOneLessValue(int[] arr){
+    public static int binarySearch(int[] arr,int target){
         if(arr==null||arr.length==0){
             return -1;
         }
-        if(arr.length==1||arr[0]<arr[1]){
-            return 0;
-        }
-        if(arr[arr.length-1]<arr[arr.length-2]){
-            return arr.length-1;
-        }
-        int left=1;
-        int right=arr.length-2;
-        while(left<right){
-            int mid=left+((right-left)>>1);
-            if(arr[mid]>arr[mid-1]){
-                right=mid-1;
-            }else if(arr[mid]>arr[mid+1]){
-                left=mid+1;
-            }else{
+        int lo=0,hi=arr.length-1,mid;
+        while(lo<=hi){
+            mid=lo+((hi-lo)>>1);
+            if(arr[mid]==target){
                 return mid;
             }
+            if(arr[mid]<arr[lo]){//右侧有序
+                if(target>arr[mid]&&target<=arr[hi]){
+                    lo=mid+1;
+                }else{
+                    hi=mid-1;
+                }
+            }else if(arr[mid]>arr[lo]){//左侧有序
+                if(target>=arr[lo]&&target<arr[mid]){
+                    hi=mid-1;
+                }else{
+                    lo=mid+1;
+                }
+
+            }else{
+                lo++;
+            }
         }
-        return left;
+        return -1;
     }
 }
 

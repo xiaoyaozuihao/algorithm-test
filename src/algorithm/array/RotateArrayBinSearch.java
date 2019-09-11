@@ -7,6 +7,7 @@ package array;
  */
 public class RotateArrayBinSearch {
 
+    //可以解决重复元素问题
     public static int binarySearch(int[] nums,int target){
         if(nums==null||nums.length==0){
             return -1;
@@ -82,30 +83,53 @@ public class RotateArrayBinSearch {
         return lo == hi && nums[lo] == target ? lo : -1;
     }
 
-    //旋转数组存在重复元素
-    public static boolean bSearch2(int[] nums,int target){
-        int l=0,r=nums.length-1,mid;
-        while(l<=r){
-            mid=(l+r)>>1;
-            if(nums[mid]==target){
-                return true;
-            }
-            if(nums[mid]<nums[l]){
-                if(target>nums[mid]&&target<=nums[r]){
-                    l=mid+1;
-                }else{
-                    r=mid-1;
-                }
-            }else if(nums[mid]>nums[l]){
-                if(target>=nums[l]&&target<nums[mid]){
-                    r=mid-1;
-                }else{
-                    l=mid+1;
-                }
+    public static int bSearch2(int[] nums,int target){
+        // 边界值
+        if(nums== null || nums.length == 0){
+            return -1;
+        }
+        // 1.确定最小值
+        int lo = 0;
+        int hi = nums.length - 1;
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            if(nums[mid] > nums[hi]){
+                lo = mid + 1;
             }else{
-                l++;
+                hi = mid;
             }
         }
-        return false;
+        int minimumIndex = lo;
+        // 2.是否找到
+        if(nums[minimumIndex] == target){
+            return minimumIndex;
+        }
+
+        // 3.确定target在哪一段
+        int realLow = -1;
+        int realHigh = -1;
+        if(target > nums[nums.length - 1]){
+            realLow = 0;
+            realHigh = minimumIndex -1;
+        }else{
+            realLow = minimumIndex;
+            realHigh = nums.length - 1;
+        }
+        // 4. 开始真正的二分查找
+        int result = -1;
+        while(realLow <= realHigh){
+            int realMid = (realLow + realHigh)/2;
+            if(nums[realMid] == target){
+                result = realMid;
+                break;
+            }
+            if(target > nums[realMid]){
+                realLow = realMid + 1;
+            }else{
+                realHigh = realMid - 1;
+            }
+        }
+        return result;
     }
+
 }
