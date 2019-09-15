@@ -7,7 +7,14 @@ package graph;
  */
 public class GraphGenerator {
     public static void main(String[] args) {
-
+        Integer[][] arr={
+                {4, 1, 2},
+                {2, 1, 3},
+                {5, 4, 3},
+                {1, 4, 5},
+                {1, 5, 3},
+                {1, 3, 2}};
+        generateGraph(arr);
     }
 
     //生成图，arr矩阵中三个要素，weight权重，from入节点的编号，to出节点的编号

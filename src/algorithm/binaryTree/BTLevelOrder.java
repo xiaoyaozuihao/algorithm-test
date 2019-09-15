@@ -21,7 +21,7 @@ import java.util.Queue;
  */
 public class BTLevelOrder {
 
-    //录每层结点数量做递减的返回值方法
+    //记录每层结点数量做递减的返回值方法
     public static List<List<Integer>> levelOrder(TreeNode root){
         List<List<Integer>> res=new ArrayList<>();
         if(root==null){

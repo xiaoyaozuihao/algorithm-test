@@ -7,26 +7,29 @@ import java.util.Set;
 
 /**
  * 最小生成树P算法
+ *
  * @author xuyh
  * @date 2019/5/31
  */
 public class Prim {
-    public static Set<Edge> prim(Graph graph){
-        Set<Edge> res=new HashSet<>();
-        PriorityQueue<Edge> edges=new PriorityQueue<>(Comparator.comparing(e->e.weight));
-        Set<Node> set=new HashSet<>();
-        for(Node node:graph.nodes.values()){
-            if(!set.contains(node)){
-                for(Edge edge:node.edges){
-                    edges.add(edge);
+    public static Set<Edge> prim(Graph graph) {
+        Set<Edge> res = new HashSet<>();
+        PriorityQueue<Edge> queue = new PriorityQueue<>(Comparator.comparing(e -> e.weight));
+        Set<Node> set = new HashSet<>();
+        for (Node node : graph.nodes.values()) {
+            if (!set.contains(node)) {
+                set.add(node);
+                for (Edge edge : node.edges) {
+                    queue.add(edge);
                 }
-                while(!edges.isEmpty()){
-                    Edge cur=edges.poll();
-                    if(!set.contains(cur.to)){
-                        set.add(cur.to);
+                while (!queue.isEmpty()) {
+                    Edge cur = queue.poll();
+                    Node toNode = cur.to;
+                    if (!set.contains(toNode)) {
+                        set.add(toNode);
                         res.add(cur);
-                        for(Edge nextEdge:cur.to.edges){
-                            edges.add(nextEdge);
+                        for (Edge nextEdge : toNode.edges) {
+                            queue.add(nextEdge);
                         }
                     }
                 }

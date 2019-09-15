@@ -3,11 +3,11 @@ package binaryTree.printTree.utils;
 import binaryTree.printTree.TreeNode;
 
 /**
- * 打印一颗二叉树，横向打印
+ * 横向打印一颗二叉树
  * @author xuyh
  * @date 2019/5/10
  */
-public class PrintBinaryTree {
+public class HorizontalPrintBinaryTree {
 
     public static void print(TreeNode node){
         System.out.println("BinaryTree:");

@@ -1,11 +1,9 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.Stack;
@@ -18,10 +16,10 @@ import java.util.Stack;
 public class Kruskal {
     public static class UnionFind{
         private HashMap<Node,Node> fatherMap;
-        private HashMap<Node,Integer> rankMap;
+        private HashMap<Node,Integer> sizeMap;
         public UnionFind(){
             fatherMap=new HashMap<>();
-            rankMap=new HashMap<>();
+            sizeMap =new HashMap<>();
         }
         private Node findFather(Node node){
 //            Node fatherNode = fatherMap.get(node);
@@ -43,10 +41,10 @@ public class Kruskal {
 
         public void makeSets(Collection<Node> nodes){
             fatherMap.clear();
-            rankMap.clear();
+            sizeMap.clear();
             for(Node node : nodes){
                 fatherMap.put(node,node);
-                rankMap.put(node,1);
+                sizeMap.put(node,1);
             }
         }
 
@@ -58,14 +56,14 @@ public class Kruskal {
             Node f1=findFather(n1);
             Node f2=findFather(n2);
             if(f1!=f2){
-                Integer l1 = rankMap.get(n1);
-                Integer l2=rankMap.get(n2);
+                Integer l1 = sizeMap.get(n1);
+                Integer l2= sizeMap.get(n2);
                 if(l1<=l2){
                     fatherMap.put(f1,f2);
-                    rankMap.put(f2,l1+l2);
+                    sizeMap.put(f2,l1+l2);
                 }else{
                     fatherMap.put(f2,f1);
-                    rankMap.put(f1,l1+l2);
+                    sizeMap.put(f1,l1+l2);
                 }
             }
         }
@@ -90,17 +88,16 @@ public class Kruskal {
     }
 
     public static void main(String[] args) {
-        UnionFind unionFind=new UnionFind();
-        List<Node> nodes=new ArrayList<>();
-        Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        nodes.add(node1);
-        nodes.add(node2);
-        nodes.add(node3);
-        unionFind.makeSets(nodes);
-        unionFind.union(node1,node2);
-        System.out.println(unionFind.isSameSet(node1, node2));
-        System.out.println(unionFind.isSameSet(node3, node2));
+        Integer[][] arr = {
+                {4, 1, 2},
+                {2, 1, 3},
+                {5, 4, 3},
+                {1, 4, 5},
+                {1, 5, 3},
+                {1, 3, 2},
+        };
+        Graph graph = GraphGenerator.generateGraph(arr);
+        Set<Edge> kruskal = kruskal(graph);
+        kruskal.stream().map(e->e.weight).forEach(s->System.out.print(s+" "));
     }
 }

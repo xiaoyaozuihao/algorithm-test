@@ -6,7 +6,8 @@ package array;
  * @date 2019/5/28
  */
 public class RotateArrayBinSearch {
-
+    public static void main(String[] args) {
+    }
     //可以解决重复元素问题
     public static int binarySearch(int[] nums,int target){
         if(nums==null||nums.length==0){
@@ -74,7 +75,7 @@ public class RotateArrayBinSearch {
         int lo = 0, hi = nums.length - 1;
         while (lo < hi) {
             int mid = (lo + hi) / 2;
-            if ((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])) {
+            if (( nums[0]> target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])) {
                 lo = mid + 1;
             } else {
                 hi = mid;

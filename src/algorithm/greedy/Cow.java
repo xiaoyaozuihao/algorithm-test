@@ -1,14 +1,14 @@
 package greedy;
 
 /**
- * 奶牛问题
+ * 奶牛问题,初始有一头母牛，母牛每年生一头小牛，小牛过3年成长为母牛，问n年后牛的数量。
  * @author xuyh
  * @date 2019/5/27
  */
 public class Cow {
     public static int cowNum(int n){
         if(n<0){
-            return 0;
+            throw new IllegalArgumentException("wrong argument");
         }
         if(n==1||n==2||n==3){
             return n;

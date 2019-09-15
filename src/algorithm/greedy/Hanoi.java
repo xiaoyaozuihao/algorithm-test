@@ -35,7 +35,7 @@ public class Hanoi {
     public static void main(String[] args) {
         hanoi(3);
         System.out.println();
-        func(3,"left","mid","right");
+//        func(3,"left","mid","right");
 
     }
 }
