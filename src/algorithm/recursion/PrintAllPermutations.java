@@ -9,7 +9,7 @@ import java.util.HashSet;
  */
 public class PrintAllPermutations {
     public static void main(String[] args) {
-        printAllPermutations("abc");
+        printAllPermutations("abcd");
         System.out.println("----------------------");
         printAllPermutations1("abc");
     }
@@ -35,6 +35,7 @@ public class PrintAllPermutations {
         process1(chs, 0);
     }
 
+    //hashset去重
     public static void process1(char[] chs, int i) {
         if (i == chs.length) {
             System.out.println(String.valueOf(chs));
@@ -55,4 +56,6 @@ public class PrintAllPermutations {
         chars[i] = chars[j];
         chars[j] = tmp;
     }
+
+
 }
