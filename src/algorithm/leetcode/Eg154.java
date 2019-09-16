@@ -58,7 +58,7 @@ public class Eg154 {
     }
 
     /**
-     * 不允许重复
+     * 不允许有重复元素
      * @param nums
      * @return
      */

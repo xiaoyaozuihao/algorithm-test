@@ -5,8 +5,10 @@ import binaryTree.printTree.TreeNode;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -61,6 +63,64 @@ public class BaseUtil {
         }
         for (int i = 0; i < arr1.length; i++) {
             if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static List<String> getDiff(List<String> l1,List<String> l2){
+        List<String> diff = new ArrayList<>();
+        List<String> maxList = l1;
+        List<String> minList = l2;
+        if(l2.size()>l1.size()) {
+            maxList = l2;
+            minList = l1;
+        }
+        Map<String,Integer> map = new HashMap<>(maxList.size());
+        for (String string : maxList) {
+            map.put(string, 1);
+        }
+        for (String string : minList) {
+            if(map.get(string)!=null) {
+                map.put(string, map.get(string)+1);
+                continue;
+            }
+            diff.add(string);
+        }
+        for(Map.Entry<String, Integer> entry:map.entrySet()) {
+            if(entry.getValue()==1) {
+                diff.add(entry.getKey());
+            }
+        }
+        return diff;
+    }
+
+    //不考虑元素的顺序
+    public static boolean isEqual(List<Integer> l1, List<Integer> l2) {
+        if (l1 == l2) {
+            return true;
+        }
+        if (l1 == null || l2 == null) {
+            return false;
+        }
+        if (l1.size() != l2.size()) {
+            return false;
+        }
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (Integer i : l1) {
+            if (!map.containsKey(i)) {
+                map.put(i, 1);
+            } else {
+                map.put(i, map.get(i) + 1);
+            }
+        }
+        for (Integer i : l2) {
+            if (!map.containsKey(i)) {
+                return false;
+            }
+            map.put(i, map.get(i) - 1);
+            if (map.get(i) < 0) {
                 return false;
             }
         }
