@@ -265,6 +265,7 @@ public class LevelOrderPrinter extends Printer {
         int topX = child.topLineX();
         if (child == parent.left) {
             top = new Node("┌");
+
             curRow.add(top);
 
             for (int x = topX + 1; x < parent.x; x++) {

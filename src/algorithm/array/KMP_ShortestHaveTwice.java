@@ -8,8 +8,20 @@ package array;
  */
 public class KMP_ShortestHaveTwice {
     public static void main(String[] args) {
-        String str = "abcaabcc";
-        System.out.println(getShortestString(str));
+        String test1 = "a";
+        System.out.println(getShortestString(test1));
+
+        String test2 = "aa";
+        System.out.println(getShortestString(test2));
+
+        String test3 = "ab";
+        System.out.println(getShortestString(test3));
+
+        String test4 = "abcdabcd";
+        System.out.println(getShortestString(test4));
+
+        String test5 = "abracadabra";
+        System.out.println(getShortestString(test5));
     }
 
     public static String getShortestString(String str) {
