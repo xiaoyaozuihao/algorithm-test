@@ -1,8 +1,7 @@
 package dp;
 
 /**
- * 给定一个数组，一个目标值，设计一个算法使数组的元素累加能否得到目标值
- *
+ * 给定一个整形数组，求是否能累加出目标值。
  * @author xuyh
  * @date 2019/5/28
  */
@@ -38,8 +37,8 @@ public class MoneyProblem {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 4, 8};
-        int aim = 12;
+        int[] arr = {5, 10, 25,1};
+        int aim = 15;
         System.out.println(moneyProblem(arr, aim));
         System.out.println(moneyProblemDp(arr, aim));
     }

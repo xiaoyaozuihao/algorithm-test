@@ -16,7 +16,9 @@ public class PrintAllSubsequences {
         System.out.println("---------------------");
         printAllSubs1(abc.toCharArray(),0);
         System.out.println("---------------------");
-        process(abc.toCharArray(),0,new ArrayList<>());
+        printAllSubs2(abc.toCharArray(),0,new ArrayList<>());
+        System.out.println("---------------------");
+        printAllSubs3(abc.toCharArray(),0,new StringBuilder());
     }
 
     public static void printAllSubs(char[] chars,int i,String res){
@@ -42,16 +44,27 @@ public class PrintAllSubsequences {
         chars[i]=tmp;
     }
 
-    public static void process(char[] chs, int i, List<Character> res) {
+    public static void printAllSubs3(char[] chars,int i,StringBuilder sb){
+        if(i==chars.length){
+            System.out.println(sb.toString());
+            return;
+        }
+        sb.append(chars[i]);
+        printAllSubs3(chars,i+1,sb);
+        sb.deleteCharAt(sb.length()-1);
+        printAllSubs3(chars,i+1,sb);
+    }
+
+    public static void printAllSubs2(char[] chs, int i, List<Character> res) {
         if(i == chs.length) {
             System.out.println(res.stream().map(c->c.toString()).collect(Collectors.joining("")));
             return;
         }
         List<Character> resKeep = copyList(res);
         resKeep.add(chs[i]);
-        process(chs, i+1, resKeep);
+        printAllSubs2(chs, i+1, resKeep);
         List<Character> resNoInclude = copyList(res);
-        process(chs, i+1, resNoInclude);
+        printAllSubs2(chs, i+1, resNoInclude);
     }
 
     public static List<Character> copyList(List<Character> list){
