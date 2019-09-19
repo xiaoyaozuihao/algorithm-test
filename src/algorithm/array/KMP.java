@@ -30,7 +30,7 @@ public class KMP {
                 //那就换个开头，所以si向后走
             } else if (nextArray[mi] == -1) {
                 si++;
-            } else {//如果不为-1，那么mi就可以向前跳，从跳到的那个位置再开始配
+            } else {//如果不为-1，那么mi就可以向前跳，跳到上一个具有最大前缀的字符索引的位置，从跳到的那个位置再开始配
                 mi = nextArray[mi];
             }
         }
@@ -38,6 +38,14 @@ public class KMP {
         return mi == ms.length ? si - mi : -1;
     }
 
+    /**
+     * 生成字符串的next数组。
+     * next[i]的定义是：当前字符之前的最大前缀和后缀的字符串长度的值,不能包含全部字符。
+     * 例如aaaab,next[4]=3,即最大前缀为aaa,后缀也是，前缀不能包含最后一个字符a，后缀不能包含第一个字符a
+     * 显然0位置不存在，所以规定为-1，1位置前面只有一个字符，所以规定为0.
+     * @param ms
+     * @return
+     */
     public static int[] getNextArray(char[] ms) {
         if (ms.length == 1) {
             return new int[]{-1};

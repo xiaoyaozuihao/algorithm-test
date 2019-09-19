@@ -36,11 +36,21 @@ public class CountSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        int min=Integer.MAX_VALUE;
-        int max=Integer.MIN_VALUE;
-        for(int i=0;i<arr.length;i++){
-            min= Math.min(arr[i],min);
-            max= Math.max(arr[i],max);
+//        int min=Integer.MAX_VALUE;
+//        int max=Integer.MIN_VALUE;
+//        for(int i=0;i<arr.length;i++){
+//            min= Math.min(arr[i],min);
+//            max= Math.max(arr[i],max);
+//        }
+        int min = arr[0];
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+            if (arr[i] > max) {
+                max = arr[i];
+            }
         }
         int[] bucket = new int[max - min + 1];
         for (int i = 0; i < arr.length; i++) {
@@ -63,9 +73,9 @@ public class CountSort {
     }
 
     public static void main(String[] args) {
-//        BaseUtil.testTemplate("sort.CountSort", "countSort1");
-        int[] arr = {379,589,693};
-        countSort1(arr);
-        BaseUtil.printArray(arr);
+        BaseUtil.testTemplate("sort.CountSort", "countSort1");
+//        int[] arr = {379,589,693};
+//        countSort1(arr);
+//        BaseUtil.printArray(arr);
     }
 }
