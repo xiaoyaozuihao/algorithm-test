@@ -1,5 +1,7 @@
 package array;
 
+import util.BaseUtil;
+
 import java.util.LinkedList;
 
 /**
@@ -9,6 +11,13 @@ import java.util.LinkedList;
  * @date 2019/9/19
  */
 public class SlidingWindowMaxArray {
+    public static void main(String[] args) {
+        int[] arr = {2,5,4,3,6,8,9,3,1};
+        BaseUtil.printArray(arr);
+        int[] maxWindow = getMaxWindow(arr, 3);
+        BaseUtil.printArray(maxWindow);
+    }
+
     public static int[] getMaxWindow(int[] arr, int w) {
         if (arr == null || w < 1 || arr.length < w) {
             return null;
@@ -18,7 +27,7 @@ public class SlidingWindowMaxArray {
         int[] res = new int[arr.length - w + 1];
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
-            while (max.isEmpty() && arr[max.peekLast()] <= arr[i]) {
+            while (!max.isEmpty() && arr[max.peekLast()] <= arr[i]) {
                 max.pollLast();
             }
             max.addLast(i);
