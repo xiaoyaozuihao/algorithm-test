@@ -1,6 +1,5 @@
 package linkedList;
 
-import binaryTree.printTree.DoubleNode;
 import binaryTree.printTree.TreeNode;
 import util.BaseUtil;
 

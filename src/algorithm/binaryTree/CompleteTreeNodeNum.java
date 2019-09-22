@@ -43,6 +43,7 @@ public class CompleteTreeNodeNum {
         int left=getDepth(root.left);
         int right=getDepth(root.right);
         if(left==right){
+            //左树是满二叉树，左树的结点数量+根结点+右树的结点数量
             return (1<<left)+countNodes(root.right);
         }else{
             return (1<<right)+countNodes(root.left);

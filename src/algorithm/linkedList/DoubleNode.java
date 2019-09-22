@@ -1,4 +1,4 @@
-package binaryTree.printTree;
+package linkedList;
 
 /**
  * @author xuyh

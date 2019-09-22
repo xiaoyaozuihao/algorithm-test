@@ -3,6 +3,7 @@ package stack;
 import java.util.Stack;
 
 /**
+ * 最大子矩阵的大小
  * 在一个矩形中找到全是1的最大矩形，计算这个矩形中包含的1的数量。
  * 例如：
  * 1 1 0 1
