@@ -247,18 +247,18 @@ public class LFUCacheSample {
     }
 
     public class LFU<k, v> {
-        private final int capcity;
+        private final int capacity;
         private Map<k, v> cache = new HashMap<>();
         private Map<k, HitRate> count = new HashMap<>();
 
-        public LFU(int capcity) {
-            this.capcity = capcity;
+        public LFU(int capacity) {
+            this.capacity = capacity;
         }
 
         public void put(k key, v value) {
             v v = cache.get(key);
             if (v == null) {
-                if (cache.size() == capcity) {
+                if (cache.size() == capacity) {
                     removeElement();
                 }
                 count.put(key, new HitRate(key, 1, System.nanoTime()));

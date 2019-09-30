@@ -107,6 +107,7 @@ public class LRUCacheSample {
                 return null;
             }
             Node<K, V> res = head;
+            //只有一个结点情况和一般情况
             if (head == tail) {
                 head = null;
                 tail = null;
