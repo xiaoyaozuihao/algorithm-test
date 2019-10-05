@@ -3,6 +3,7 @@ package recursion;
 import java.util.Stack;
 
 /**
+ * 只使用递归来反转栈
  * @author xuyh
  * @date 2019/9/17
  */

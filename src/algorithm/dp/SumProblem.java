@@ -5,7 +5,7 @@ package dp;
  * @author xuyh
  * @date 2019/5/28
  */
-public class MoneyProblem {
+public class SumProblem {
     public static boolean moneyProblem(int[] arr, int aim) {
         return process(arr, 0, 0, aim);
     }
