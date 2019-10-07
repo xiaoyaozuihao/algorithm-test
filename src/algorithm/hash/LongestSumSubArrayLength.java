@@ -5,7 +5,7 @@ import util.BaseUtil;
 import java.util.HashMap;
 
 /**
- * 给定一个数组，一个目标值，求数组中能累加出目标值的最长子串
+ * 给定一个数组,有正有负有0，给定一个目标值，求数组中能累加出目标值的最长子串
  *
  * @author: xuyh
  * @create: 2019/9/22
@@ -22,6 +22,7 @@ public class LongestSumSubArrayLength {
             return 0;
         }
         HashMap<Integer, Integer> map = new HashMap<>();
+        //-1位置的累加和为0
         map.put(0, -1);
         int sum = 0;
         int maxLen = 0;

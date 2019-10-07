@@ -3,7 +3,7 @@ package dp;
 import util.BaseUtil;
 
 /**
- * 在一个全是正整数的数组中求累加和为aim的最长子数组的长度
+ * 给定一个数组，数组中只有正整数，求累加和为aim的最长子数组的长度
  *
  * @author: xuyh
  * @create: 2019/10/5
