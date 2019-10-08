@@ -8,14 +8,16 @@ package dp;
  **/
 public class LongestSubarrayLessSumAwesomeSolution {
     public static void main(String[] args) {
+        boolean succeed = true;
         for (int i = 0; i < 1000000; i++) {
             int[] arr = generateRandomArray(10, 20);
             int k = (int) (Math.random() * 20) - 5;
-            if (getMaxLength(arr, k) != getMaxLength(arr, k)) {
-                System.out.println("oops!");
+            if (getMaxLength(arr, k) != getMaxLength1(arr, k)) {
+                succeed = false;
+                break;
             }
         }
-        System.out.println("hooray!");
+        System.out.println(succeed ? "hooray!" : "oops!");
     }
 
     //时间复杂度O(N)
@@ -72,10 +74,11 @@ public class LongestSubarrayLessSumAwesomeSolution {
         if (arr == null || arr.length == 0) {
             return 0;
         }
-        int[] h = new int[arr.length];
+        int[] h = new int[arr.length + 1];
         int sum = 0;
         h[0] = sum;
-        //计算出每个位置的最大累加和，然后利用二分法求解
+        //计算出每个位置的累加和，保留每个位置左侧累加和的最大值
+        //因为我们只关心某个累加和大于等于aim最早出现的位置
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
             h[i + 1] = Math.max(sum, h[i]);
@@ -84,8 +87,11 @@ public class LongestSubarrayLessSumAwesomeSolution {
         int res = 0;
         int pre = 0;
         int len = 0;
+        //假如0~i的累加和为sum[0-i],那么求以i结尾的累加和小于等于aim的最长子数组的长度
+        //可以转化求sum[0-i]-aim这个值累加和最早出现在i之前的什么位置就可以
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
+            //由于累加和最大值数组升序，所有可以用二分查找找出累加和最早大于等于sum-aim出现的位置
             pre = getLessIndex(h, sum - aim);
             len = pre == -1 ? 0 : i - pre + 1;
             res = Math.max(res, len);
@@ -118,5 +124,4 @@ public class LongestSubarrayLessSumAwesomeSolution {
         }
         return res;
     }
-
 }
