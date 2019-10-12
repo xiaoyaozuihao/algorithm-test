@@ -81,6 +81,12 @@ public class Manacher {
         boolean[][] pal = new boolean[len][len];
         int max = 0;
         for (int i = 0; i < len; i++) {//i作为终点
+//            for (int j = i; j >= 0; j--) {
+//                if (str.charAt(j) == str.charAt(i) && (i - j < 2 || pal[j + 1][i - 1])) {
+//                    pal[j][i] = true;
+//                    max = Math.max(max, i - j + 1);
+//                }
+//            }
             int j = i;//j作为起点
             while (j >= 0) {
                 if (str.charAt(j) == str.charAt(i) && (i - j < 2 || pal[j + 1][i - 1])) {

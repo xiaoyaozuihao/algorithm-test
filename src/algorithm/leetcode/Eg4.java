@@ -8,9 +8,13 @@ package leetcode;
  */
 public class Eg4 {
     public static void main(String[] args) {
-        int[] nums1 = {1, 3};
+        int[] nums1 = {1, 3, 5, 8, 9};
         int[] nums2 = {2};
         System.out.println(findMedianSortedArrays(nums1, nums2));
+        System.out.println(findMedianSortedArrays1(nums1, nums2));
+        System.out.println(findMedianSortedArrays2(nums1, nums2));
+        System.out.println(findMedianSortedArrays4(nums1, nums2));
+        System.out.println(findMedianSortedArrays5(nums1, nums2));
     }
 
     //归并排序后计算中位数
@@ -200,7 +204,7 @@ public class Eg4 {
         //我们目前是虚拟加了'#',所以数组1是2*n+1长度,那么最大值坐标就是2*n
         // c1 + c2 = m + n的理解：注意填充#号后有2m+2n+2个元素，那么一半就是m+n+1,所以坐标就是[0, m+n]，所以c1 + c2 = m + n
         // Ci 为第i个数组的割,比如C1为2时表示第1个数组只有2个元素。LMaxi为第i个数组割后的左元素。RMini为第i个数组割后的右元素。
-        int LMax1 = 0, LMax2=0, RMin1=0, RMin2=0, c1, c2, lo = 0, hi = 2 * n;
+        int LMax1 = 0, LMax2 = 0, RMin1 = 0, RMin2 = 0, c1, c2, lo = 0, hi = 2 * n;
         while (lo <= hi)   //二分
         {
             c1 = (lo + hi) / 2;  //c1是二分的结果
@@ -217,5 +221,36 @@ public class Eg4 {
                 break;
         }
         return (Math.max(LMax1, LMax2) + Math.min(RMin1, RMin2)) / 2.0;
+    }
+
+    public static double findMedianSortedArrays5(int[] nums1, int[] nums2) {
+        int m = nums1.length, n = nums2.length;
+        if (m > n) {
+            return findMedianSortedArrays5(nums2, nums1);
+        }
+        int cut1 = 0, cut2 = 0, cutL = 0, cutR = nums1.length;
+        while (cut1 <= nums1.length) {
+            cut1 = cutL + (cutR - cutL) / 2;
+            cut2 = (m + n) / 2 - cut1;
+            double l1 = (cut1 == 0) ? Integer.MIN_VALUE : nums1[cut1 - 1];
+            double l2 = (cut2 == 0) ? Integer.MIN_VALUE : nums2[cut2 - 1];
+            double r1 = (cut1 == m) ? Integer.MAX_VALUE : nums1[cut1];
+            double r2 = (cut2 == n) ? Integer.MAX_VALUE : nums2[cut2];
+            if (l1 > r2) {
+                cutR = cut1 - 1;
+            } else if (l2 > r1) {
+                cutL = cut1 + 1;
+            } else {
+                if ((m + n) % 2 == 0) {
+                    l1 = l1 > l2 ? l1 : l2;
+                    r1 = r1 < r2 ? r1 : r2;
+                    return (l1 + r1) / 2;
+                } else {
+                    r1 = r1 < r2 ? r1 : r2;
+                    return r1;
+                }
+            }
+        }
+        return -1;
     }
 }
