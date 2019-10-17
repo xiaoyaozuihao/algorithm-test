@@ -55,6 +55,6 @@ public class BucketSort {
 
 
     public static void main(String[] args) {
-        BaseUtil.testTemplate("BucketSort","bucketSort");
+        BaseUtil.testSortTemplate("BucketSort","bucketSort");
     }
 }

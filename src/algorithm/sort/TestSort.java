@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class TestSort {
     public static void main(String[] args) {
-        BaseUtil.testTemplate("sort.TestSort", "sort");
+        BaseUtil.testSortTemplate("sort.TestSort", "sort");
 //        int [] arr=new int[]{16,0,25,28,9,12,-29,26,26,-10,12,10,11,-11,-28,24,-3,-22,-7,-22,20,-2,27,-16,25,-14,-15,20,-3,5,6,-9,26,-2,-18,-9,4,14};
 //        sort(arr);
 //        BaseUtil.printArray(arr);

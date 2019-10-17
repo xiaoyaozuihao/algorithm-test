@@ -94,6 +94,6 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        BaseUtil.testTemplate("sort.HeapSort", "heapSort");
+        BaseUtil.testSortTemplate("sort.HeapSort", "heapSort");
     }
 }

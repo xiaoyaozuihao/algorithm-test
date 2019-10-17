@@ -41,6 +41,6 @@ public class ShellSort {
     }
 
     public static void main(String[] args) {
-        BaseUtil.testTemplate("sort.ShellSort","shellSort");
+        BaseUtil.testSortTemplate("sort.ShellSort","shellSort");
     }
 }

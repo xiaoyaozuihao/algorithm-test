@@ -73,7 +73,7 @@ public class CountSort {
     }
 
     public static void main(String[] args) {
-        BaseUtil.testTemplate("sort.CountSort", "countSort1");
+        BaseUtil.testSortTemplate("sort.CountSort", "countSort1");
 //        int[] arr = {379,589,693};
 //        countSort1(arr);
 //        BaseUtil.printArray(arr);

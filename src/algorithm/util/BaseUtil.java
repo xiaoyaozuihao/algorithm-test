@@ -1,7 +1,7 @@
 package util;
 
-import linkedList.DoubleNode;
 import binaryTree.printTree.TreeNode;
+import linkedList.DoubleNode;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -15,18 +15,17 @@ import java.util.Map;
  * @author xuyh
  * @date 2019/4/5
  */
-public class BaseUtil {
+public abstract class BaseUtil {
     /**
      * 对数器的实现,用于校验自己写的算法是否正确
-        0,有一个想要测试的方法a
-        1,实现一个绝对正确但复杂度不好的方法b，该方法也可能不正确，但通过比对能够进行方便的找出错在哪
-        2,实现一个随机样本发生器
-        3,实现比对的方法
-        4,把a和b方法比对很多次来验证a方法是否正确
-        5,如果有一个样本使得测试出错，打印该样本分析是哪个方法出错
-        6,当样本数量很多时比对依然正确，基本可以确定方法a已经正确
-    */
-
+     0,有一个想要测试的方法a
+     1,实现一个绝对正确但复杂度不好的方法b，该方法也可能不正确，但通过比对能够进行方便的找出错在哪
+     2,实现一个随机样本发生器
+     3,实现比对的方法
+     4,把a和b方法比对很多次来验证a方法是否正确
+     5,如果有一个样本使得测试出错，打印该样本分析是哪个方法出错
+     6,当样本数量很多时比对依然正确，基本可以确定方法a已经正确
+     */
     /**
      * 1.先定义一个绝对正确的但可能复杂度不好的方法，这里选库函数的排序算法
      */
@@ -69,27 +68,27 @@ public class BaseUtil {
         return true;
     }
 
-    public static List<String> getDiff(List<String> l1,List<String> l2){
+    public static List<String> getDiff(List<String> l1, List<String> l2) {
         List<String> diff = new ArrayList<>();
         List<String> maxList = l1;
         List<String> minList = l2;
-        if(l2.size()>l1.size()) {
+        if (l2.size() > l1.size()) {
             maxList = l2;
             minList = l1;
         }
-        Map<String,Integer> map = new HashMap<>(maxList.size());
+        Map<String, Integer> map = new HashMap<>(maxList.size());
         for (String string : maxList) {
             map.put(string, 1);
         }
         for (String string : minList) {
-            if(map.get(string)!=null) {
-                map.put(string, map.get(string)+1);
+            if (map.get(string) != null) {
+                map.put(string, map.get(string) + 1);
                 continue;
             }
             diff.add(string);
         }
-        for(Map.Entry<String, Integer> entry:map.entrySet()) {
-            if(entry.getValue()==1) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
                 diff.add(entry.getKey());
             }
         }
@@ -189,8 +188,9 @@ public class BaseUtil {
         }
         System.out.println();
     }
-    public static void swap(int[] arr,int i,int j){
-        int temp= arr[i];
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
@@ -201,8 +201,11 @@ public class BaseUtil {
         arr[i] = arr[j];
         arr[j] = temp;
         //异或运算实现交换
+//        if (i == j) {
+//            return;
+//        }
 //        arr[i] ^= arr[j];
-//        arr[j] = arr[i] ^ arr[j];
+//        arr[j] ^= arr[i];
 //        arr[i] ^= arr[j];
     }
 
@@ -238,14 +241,35 @@ public class BaseUtil {
             return new Integer[0];
         } else {
             Integer[] result = new Integer[array.length];
-            for(int i = 0; i < array.length; ++i) {
+            for (int i = 0; i < array.length; ++i) {
                 result[i] = array[i];
             }
             return result;
         }
     }
 
-    public static void testTemplate(String className, String methodName) {
+    public void testTemplate(int testTimes, int maxSize, int maxValue) {
+        boolean succeed = true;
+        for (int i = 0; i < testTimes; i++) {
+            int[] arr = generateRandomArray(maxSize, maxValue);
+            int[] arr1 = copyArray(arr);
+            int[] arr2 = copyArray(arr);
+            invokeMethod(arr1);
+            invokeMethod(arr2);
+            if (!isEqual(arr1, arr2)) {
+                succeed = false;
+                printArray(arr);
+                break;
+            }
+        }
+        System.out.println(succeed ? "nice!" : "oops!");
+    }
+
+    protected abstract void invokeMethod(int[] arr);
+
+    protected abstract void invokeComparator(int[] arr);
+
+    public static void testSortTemplate(String className, String methodName) {
         //定义测试次数
         int times = 10000;
         int maxSize = 100;
@@ -263,11 +287,7 @@ public class BaseUtil {
                 break;
             }
         }
-        System.out.println(succeed ? "nice" : "oh no!");
-//        int[] arr=generateRandomArray(maxSize,maxValue);
-//        printArray(arr);
-//        invokeMethod(className,methodName, arr);
-//        printArray(arr);
+        System.out.println(succeed ? "nice!" : "oops!");
     }
 
     private static void invokeMethod(String className, String methodName, int[] arr) {
@@ -282,15 +302,15 @@ public class BaseUtil {
     }
 
     public static void main(String[] args) {
-        int max=8;
-        int min=4;
-        int floor = (int)(Math.random() * (max - min + 1) + min);
+        int max = 8;
+        int min = 4;
+        int floor = (int) (Math.random() * (max - min + 1) + min);
         System.out.println(floor);
-        Map<Integer,Integer> map=new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < 100; i++) {
-            int maxValue=(int)(Math.random()*21);
+            int maxValue = (int) (Math.random() * 21);
             int sample = (int) (Math.random() * (2 * maxValue + 1)) - maxValue;
-            map.put(maxValue,sample);
+            map.put(maxValue, sample);
         }
         System.out.println(map);
     }

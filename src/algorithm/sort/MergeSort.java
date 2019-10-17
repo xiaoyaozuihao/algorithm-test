@@ -80,7 +80,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        BaseUtil.testTemplate("sort.MergeSort","mergeSort");
+        BaseUtil.testSortTemplate("sort.MergeSort","mergeSort");
         List<String> list1 = new ArrayList<>();
         list1.add("1");
         list1.add("2");

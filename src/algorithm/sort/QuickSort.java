@@ -57,6 +57,6 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        BaseUtil.testTemplate("QuickSort","quickSort");
+        BaseUtil.testSortTemplate("QuickSort","quickSort");
     }
 }
