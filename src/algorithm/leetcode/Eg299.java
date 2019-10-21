@@ -12,6 +12,13 @@ import java.util.Map;
  * @date 2019/10/17
  */
 public class Eg299 {
+    public static void main(String[] args) {
+        String secret="1123";
+        String guess="0111";
+        Eg299 eg299=new Eg299();
+        System.out.println(eg299.getHint2(secret, guess));
+    }
+
     public String getHint(String secret, String guess) {
         int cows = 0;
         int bulls = 0;
@@ -62,5 +69,28 @@ public class Eg299 {
             cow += Math.min(mapG[i], mapS[i]);
         }
         return bull + "A" + cow + "B";
+    }
+
+    public String getHint2(String secret, String guess) {
+        int bulls = 0;
+        int cows = 0;
+        int[] bucket = new int[10];
+        for (int i = 0; i < secret.length(); i++) {
+            char ss = secret.charAt(i);
+            char gg = guess.charAt(i);
+            if (ss == gg) {
+                bulls++;
+            } else {
+                bucket[ss - '0']++;
+                bucket[gg - '0']--;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            if (bucket[i] > 0) {
+                cows += bucket[i];
+            }
+        }
+        cows = secret.length() - cows - bulls;
+        return bulls + "A" + cows + "B";
     }
 }
