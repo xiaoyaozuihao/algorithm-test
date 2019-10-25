@@ -31,7 +31,7 @@ public class Manacher {
         int pr = -1;
         //当前回文右边界对应的中心点
         int index = -1;
-        int max = Integer.MIN_VALUE;
+        int max = 0;
         for (int i = 0; i < chars.length; i++) {
             //如果在遍历过程中回文右边界在i右边，则当前的回文半径可以由其对称点求出。
             //求出对称点的回文半径以及右边界到我的距离，取这两个的较小值就是以我为中心最大的回文半径。
@@ -51,10 +51,10 @@ public class Manacher {
                 pr = i + pArr[i];
                 index = i;
             }
-            //记录最大回文半径
+            //记录最大回文半径,含#号
             max = Math.max(max, pArr[i]);
         }
-        //最大回文半径-1就是最大回文串的长度
+        //最大回文半径-1就是原始字符串的最大回文串长度
         return max - 1;
     }
 
@@ -81,19 +81,11 @@ public class Manacher {
         boolean[][] pal = new boolean[len][len];
         int max = 0;
         for (int i = 0; i < len; i++) {//i作为终点
-//            for (int j = i; j >= 0; j--) {
-//                if (str.charAt(j) == str.charAt(i) && (i - j < 2 || pal[j + 1][i - 1])) {
-//                    pal[j][i] = true;
-//                    max = Math.max(max, i - j + 1);
-//                }
-//            }
-            int j = i;//j作为起点
-            while (j >= 0) {
+            for (int j = i; j >= 0; j--) {
                 if (str.charAt(j) == str.charAt(i) && (i - j < 2 || pal[j + 1][i - 1])) {
                     pal[j][i] = true;
                     max = Math.max(max, i - j + 1);
                 }
-                j--;
             }
         }
         return max;

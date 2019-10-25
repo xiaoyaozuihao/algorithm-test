@@ -84,7 +84,7 @@ public class Eg2 {
         TreeNode treeNode = addTwoNumbers(l1, l2);
         BaseUtil.printLinkedList(treeNode);
         TreeNode treeNode1 = addTwoNumbers1(l1, l2);
-        BaseUtil.printLinkedList(treeNode);
+        BaseUtil.printLinkedList(treeNode1);
         TreeNode dfs = addTwoNumber2(l1, l2);
         BaseUtil.printLinkedList(dfs);
     }

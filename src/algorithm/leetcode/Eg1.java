@@ -58,7 +58,7 @@ public class Eg1 {
         int diff;
         for (int i = 1; i < nums.length; i++) {
             diff = target - nums[i];
-            //i=0时索引无效,所以单独处理
+            //i=0时索引无效,所以单独处理，因为数组的默认值为0
             if (diff == nums[0]) {
                 return new int[]{0, i};
             }
@@ -73,6 +73,7 @@ public class Eg1 {
         }
         throw new IllegalArgumentException("no two sum value");
 
+        //索引+1解决索引无效问题
 //        int indexArrayMax = 2047;
 //        int[] indexArray = new int[indexArrayMax + 1];
 //        int index = 0;
