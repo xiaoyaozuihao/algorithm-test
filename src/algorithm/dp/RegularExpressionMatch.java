@@ -7,6 +7,49 @@ package dp;
  * @create: 2019/10/7
  **/
 public class RegularExpressionMatch {
+    public static void main(String[] args) {
+        String str = "abcccdefg";
+        String exp = "ab.*d.*e.*";
+        str = "aa";
+        exp = "a*a*";
+        System.out.println(isMatch0(str, exp));
+        System.out.println(isMatch1(str, exp));
+        System.out.println(isMatchDP(str, exp));
+        System.out.println(isMatchLeetCodeBest(str, exp));
+    }
+
+    //官方暴力法
+    public static boolean isMatch(String text, String pattern) {
+        if (pattern.isEmpty()) return text.isEmpty();
+        boolean firstMatch = (!text.isEmpty() &&
+                (pattern.charAt(0) == text.charAt(0) || pattern.charAt(0) == '.'));
+        if (pattern.length() >= 2 && pattern.charAt(1) == '*') {
+            return (isMatch(text, pattern.substring(2)) ||
+                    (firstMatch && isMatch(text.substring(1), pattern)));
+        } else {
+            return firstMatch && isMatch(text.substring(1), pattern.substring(1));
+        }
+    }
+
+    //官方dp
+    public static boolean isMatch1(String text, String pattern) {
+        boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];
+        dp[text.length()][pattern.length()] = true;
+        for (int i = text.length(); i >= 0; i--) {
+            for (int j = pattern.length() - 1; j >= 0; j--) {
+                boolean first_match = (i < text.length() &&
+                        (pattern.charAt(j) == text.charAt(i) ||
+                                pattern.charAt(j) == '.'));
+                if (j + 1 < pattern.length() && pattern.charAt(j + 1) == '*') {
+                    dp[i][j] = dp[i][j + 2] || first_match && dp[i + 1][j];
+                } else {
+                    dp[i][j] = first_match && dp[i + 1][j + 1];
+                }
+            }
+        }
+        return dp[0][0];
+    }
+
     public static boolean isValid(char[] s, char[] e) {
         for (int i = 0; i < s.length; i++) {
             if (s[i] == '*' || s[i] == '.') {
@@ -21,7 +64,7 @@ public class RegularExpressionMatch {
         return true;
     }
 
-    public static boolean isMatch(String str, String exp) {
+    public static boolean isMatch0(String str, String exp) {
         if (str == null || exp == null) {
             return false;
         }
@@ -273,15 +316,5 @@ public class RegularExpressionMatch {
         if (isMatch)
             return match(s, p, i + 1, j + 1);
         return false;
-    }
-
-    public static void main(String[] args) {
-        String str = "abcccdefg";
-        String exp = "ab.*d.*e.*";
-        str = "aa";
-        exp = "a*a*";
-        System.out.println(isMatch(str, exp));
-        System.out.println(isMatchDP(str, exp));
-        System.out.println(isMatchLeetCodeBest(str, exp));
     }
 }

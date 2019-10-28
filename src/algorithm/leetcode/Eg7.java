@@ -54,7 +54,7 @@ public class Eg7 {
             if (res > Integer.MAX_VALUE / 10 || res < Integer.MIN_VALUE / 10){
                 return 0;
             }
-                res = res * 10 + pop;
+            res = res * 10 + pop;
         }
         return res;
     }
