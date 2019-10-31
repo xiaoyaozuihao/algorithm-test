@@ -26,20 +26,17 @@ public class Eg13 {
         map.put('D', 500);
         map.put('M', 1000);
         int m, n, ret = 0;
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length() - 1; i++) {
             m = map.get(s.charAt(i));
-            if (i < s.length() - 1) {
-                n = map.get(s.charAt(i + 1));
-                if (m < n) {
-                    ret -= m;
-                } else {
-                    ret += m;
-                }
-            }else{
+            n = map.get(s.charAt(i + 1));
+            //如果前一个字母比后一个小，说明是组合字母
+            if (m < n) {
+                ret -= m;
+            } else {
                 ret += m;
             }
         }
-        return ret;
+        return ret + map.get(s.charAt(s.length() - 1));
     }
 
     public int romanToInt(String s) {
