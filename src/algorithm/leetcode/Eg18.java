@@ -84,6 +84,7 @@ public class Eg18 {
         return res;
     }
 
+    //leetCode速度最快
     public List<List<Integer>> fourSum1(int[] nums, int target) {
         if (nums.length < 4 || nums == null) return new LinkedList<>();
         List<List<Integer>> res = new LinkedList<>();
