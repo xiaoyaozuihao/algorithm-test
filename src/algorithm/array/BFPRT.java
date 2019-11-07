@@ -13,9 +13,10 @@ public class BFPRT {
     public static void main(String[] args) {
 //        int[] arr = {6, 9, 1, 3, 1, 2, 2, 5, 6, 1, 3, 5, 9, 7, 2, 5, 6, 1, 9};
         int[] arr = {6, 9, 1, 3, 4, 10, 12, 5, 6, 11, 13, 8, 19, 7, 2, 5, 6};
+        arr = new int[]{2, 4, 6, 53, 7, 8, 1};
         // sorted : { 1, 1, 1, 1, 2, 2, 2, 3, 3, 5, 5, 5, 6, 6, 6, 7, 9, 9, 9 }
-        BaseUtil.printArray(getMinKByHeap(arr, 10));
-        BaseUtil.printArray(getMinKByBFPRT(arr, 10));
+        BaseUtil.printArray(getMinKByHeap(arr, 5));
+        BaseUtil.printArray(getMinKByBFPRT(arr, 5));
     }
 
     public static int[] getMinKByBFPRT(int[] arr, int k) {
@@ -30,6 +31,7 @@ public class BFPRT {
                 res[index++] = arr[i];
             }
         }
+        //没填满数组，就用第k小的数进行填充
         while (index != res.length) {
             res[index++] = minKth;
         }
@@ -70,6 +72,7 @@ public class BFPRT {
                 lo++;
             }
         }
+        //返回等于区域的左右边界
         return new int[]{less + 1, more - 1};
     }
 
@@ -82,18 +85,21 @@ public class BFPRT {
             int end = begin + 4;
             mArr[i] = getMedian(arr, begin, Math.min(end, hi));
         }
+        //在中位数数组中找中位数，即k/2小的数
         return select(mArr, 0, mArr.length - 1, mArr.length / 2);
     }
 
     private static int getMedian(int[] arr, int begin, int end) {
         insertionSort(arr, begin, end);
-        return arr[begin + ((end - begin) >> 1)];
+        int sum = end + begin;
+        int mid = (sum / 2) + (sum % 2);
+        return arr[mid];
     }
 
     private static void insertionSort(int[] arr, int begin, int end) {
-        for (int i = begin; i < end + 1; i++) {
-            for (int j = i - 1; j >= begin && arr[j] > arr[j + 1]; j--) {
-                BaseUtil.swap(arr, j, j + 1);
+        for (int i = begin + 1; i < end + 1; i++) {
+            for (int j = i; j > begin && arr[j - 1] > arr[j]; j--) {
+                BaseUtil.swap(arr, j - 1, j);
             }
         }
     }
@@ -104,9 +110,11 @@ public class BFPRT {
             return arr;
         }
         int[] kheap = new int[k];
+        //先取k个数放到大根堆中
         for (int i = 0; i < k; i++) {
-            headInsert(kheap, arr[i], i);
+            heapInsert(kheap, arr[i], i);
         }
+        //从之后的元素中找到符合的数
         for (int i = k; i < arr.length; i++) {
             if (arr[i] < kheap[0]) {
                 kheap[0] = arr[i];
@@ -130,16 +138,20 @@ public class BFPRT {
         }
     }
 
-    private static void headInsert(int[] kheap, int value, int i) {
-        kheap[i] = value;
-        while (i != 0) {
-            int parent = (i - 1) / 2;
-            if (kheap[i] > kheap[parent]) {
-                BaseUtil.swap(kheap, parent, i);
-                i = parent;
-            } else {
-                break;
-            }
+    private static void heapInsert(int[] heap, int value, int i) {
+//        heap[i] = value;
+//        while (i != 0) {
+//            int parent = (i - 1) / 2;
+//            if (heap[i] > heap[parent]) {
+//                BaseUtil.swap(heap, parent, i);
+//                i = parent;
+//            } else {
+//                break;
+//            }
+//        }
+        while (heap[i] > heap[(i - 1) / 2]) {
+            BaseUtil.swap(heap, i, (i - 1) / 2);
+            i = (i - 1) / 2;
         }
     }
 }

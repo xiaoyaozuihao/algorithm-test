@@ -7,6 +7,8 @@ import util.BaseUtil;
  * @date 2019/3/31
  */
 public class InsertSort {
+
+    //不确定是不是插入排序，但是可以实现排序
     public static void insertSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;

@@ -7,17 +7,18 @@ import java.util.LinkedList;
 /**
  * 给定一个数组，求该数组所有子数组中最大值减最小值小于等于num的子数组的数量
  * 利用滑动窗口最大值和最小值巧妙解答
+ *
  * @author xuyh
  * @date 2019/9/19
  */
 public class AllLessNumSubArray {
     public static void main(String[] args) {
 //        int[] arr = getRandomArray(30);
-        int[] arr={8,2,3,4,7,2,8,0,6,2,0,4,0,2,1,1,1,4,2,9,7,3,5,1,2,8,1,1,5,4};
+        int[] arr = {8, 2, 3, 4, 7, 2, 8, 0, 6, 2, 0, 4, 0, 2, 1, 1, 1, 4, 2, 9, 7, 3, 5, 1, 2, 8, 1, 1, 5, 4};
         int num = 5;
         BaseUtil.printArray(arr);
         System.out.println(getNum(arr, num));
-        System.out.println(getSubArrayNum(arr,num));
+        System.out.println(getSubArrayNum(arr, num));
     }
 
     /**
@@ -25,6 +26,7 @@ public class AllLessNumSubArray {
      * 如果一个子数组L到R达标，则它内部的所有子数组都达标，因为向内收缩时，如果max变小，或者min变大，都会导致max-min变得更小；
      * 同理如果一个子数组不达标，则包含这个子数组的子数组都不达标，因为向外扩的时候，如果max变大，或者min变小都会导致max-min变得更大。
      * 时间复杂度O(n)
+     *
      * @return
      */
     public static int getSubArrayNum(int[] arr, int num) {
@@ -61,6 +63,7 @@ public class AllLessNumSubArray {
             //一次性获取以i为起始的所有达标的子数组的数量
             //下次循环以i+1位置作为起始，j的值继续从上一次的位置往后走，走到窗口内最大值减最小值大于目标值则停止。
             //则又可以一次性获取以i+1位置作为起始的所有达标子数组的数量
+            //以i位置开始,j位置结束的子数组的数量等于i到j的元素数量，即j-i+1,由于循环结束j已经加1，所以这个地方不需要再加1
             res += j - i;
             //打印达标的子数组的父集
 //            int[] copyArr = new int[j-i];
@@ -77,6 +80,10 @@ public class AllLessNumSubArray {
             for (int j = i; j < arr.length; j++) {
                 if (isValid(arr, i, j, num)) {
                     res++;
+                    //打印达标数组
+//                    int[] copyArr = new int[j - i + 1];
+//                    System.arraycopy(arr, i, copyArr, 0, j - i + 1);
+//                    System.out.println(Arrays.toString(copyArr));
                 }
             }
         }

@@ -55,6 +55,9 @@ public class HeapSort {
         }
     }
 
+    //总的时间计算为：s = 2^( i - 1 ) * ( k - i )；其中 i 表示第几层，
+    // 2^( i - 1) 表示该层上有多少个元素，( k - i) 表示子树上要下调比较的次数。
+    //S = n - log(n) -1，所以时间复杂度为：O(n)
     private static void buildMaxHeap(int[] arr) {
         //从最后一个节点array.length-1的父节点（array.length-1-1）/2开始，直到根节点0，反复调整堆
         for (int i = (arr.length - 2) / 2; i >= 0; i--) {
@@ -62,6 +65,7 @@ public class HeapSort {
         }
     }
 
+    //log2+log3+…+log(n-1)+log(n)≈log(n!),可以证明log(n!)和nlog(n)是同阶函数,时间复杂度为O(nlogn)
     private static void adjustDownToUp(int[] arr, int i) {
         int temp = arr[i];
         //j为初始化为节点i的左孩子，沿节点较大的子节点向下调整

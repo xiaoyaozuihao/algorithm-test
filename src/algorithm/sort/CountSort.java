@@ -9,6 +9,7 @@ import util.BaseUtil;
  * @date 2019/4/13
  */
 public class CountSort {
+    //不能实现稳定性
     public static void countSort(int[] array) {
         if (array == null || array.length < 2) {
             return;
@@ -32,6 +33,7 @@ public class CountSort {
         }
     }
 
+    //可以保证稳定性
     public static void countSort1(int[] arr) {//未能实现稳定排序
         if (arr == null || arr.length < 2) {
             return;
