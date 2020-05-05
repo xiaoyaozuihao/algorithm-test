@@ -39,4 +39,24 @@ public class BubbleSort {
         }
     }
 
+    //冒泡排序的优化
+    //假如从开始的第一对到结尾的最后一对，相邻的元素之间都没有发生交换的操作，
+    //这意味着右边的元素总是大于等于左边的元素，此时的数组已经是有序的了，我们无需再对剩余的元素重复比较下去了。
+    public static void bubbleSort2(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            boolean flag = true;
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    flag = false;
+                    BaseUtil.swap(arr, j, j + 1);
+                }
+            }
+            if (flag) {
+                break;
+            }
+        }
+    }
 }

@@ -10,31 +10,30 @@ import util.BaseUtil;
  * @date 2019/4/25
  */
 public class ReverseLinkedList {
-
     //单链表反转
     public static TreeNode reverseList(TreeNode head) {
-        TreeNode pre = null;
+        TreeNode newHead = null;
+        TreeNode curHead = head;
         TreeNode next;
-        while (head != null) {
-            next = head.next;
-            head.next = pre;
-            pre = head;
-            head = next;
+        while (curHead != null) {
+            next = curHead.next;
+            curHead.next = newHead;
+            newHead = curHead;
+            curHead = next;
         }
-        return pre;
+        return newHead;
     }
 
     //单链表反转，递归解法
-    public static TreeNode reverseList1(TreeNode head) {
+    public static TreeNode reverseLinkedList(TreeNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        TreeNode cur = reverseList1(head.next);
+        TreeNode newHead = reverseLinkedList(head.next);
         head.next.next = head;
         head.next = null;
-        return cur;
+        return newHead;
     }
-
 
     public static DoubleNode reverseDoubleNode(DoubleNode head) {
         DoubleNode next;
@@ -49,13 +48,11 @@ public class ReverseLinkedList {
         return pre;
     }
 
-
-
     public static void main(String[] args) {
-        TreeNode head=new TreeNode(1);
-        head.next=new TreeNode(2);
-        head.next.next=new TreeNode(3);
-        head.next.next.next=new TreeNode(4);
+        TreeNode head = new TreeNode(1);
+        head.next = new TreeNode(2);
+        head.next.next = new TreeNode(3);
+        head.next.next.next = new TreeNode(4);
         BaseUtil.printLinkedList(head);
         BaseUtil.printLinkedList(reverseList(head));
         DoubleNode head1 = new DoubleNode(1);

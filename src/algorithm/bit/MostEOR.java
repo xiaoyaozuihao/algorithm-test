@@ -8,6 +8,7 @@ import java.util.HashMap;
  * 给定一个整型数组arr，其中可能有正有负有零。
  * 你可以随意把整个数组切成若干个不相容的子数组，求子数组中所有元素异或后为0的最多的子数组数量，即最优切分方式
  *
+ * 另一种问法：给出n个数字，问最多有多少个不重叠的非空区间，使得每个区间内数字的xor都等于0
  * @author: xuyh
  * @create: 2019/9/22
  **/
@@ -35,28 +36,24 @@ public class MostEOR {
         if (arr == null || arr.length == 0) {
             return 0;
         }
-        //子数组的数量
-        int ans = 0;
-        //异或和
         int xor = 0;
-        int[] mosts = new int[arr.length];
+        int[] dp = new int[arr.length];
         HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
         for (int i = 0; i < arr.length; i++) {
-            xor ^= arr[i];
+            xor ^= arr[i];//从0-i的异或结果
             if (map.containsKey(xor)) {//存在异或和，这是当前位置之前最后一次出现异或和为零的位置
                 int pre = map.get(xor);
-                //取出异或和为零的位置，如果是-1，说明第一个元素组成的子数组达标，否则就用之前的数量加1.
-                mosts[i] = pre == -1 ? 1 : (mosts[pre] + 1);
+                //取出异或和为零的位置，如果是-1，说明第一个元素到当前元素组成的子数组异或和为0达标，否则就用之前的数量加1.
+                dp[i] = pre == -1 ? 1 : (dp[pre] + 1);
             }
             if (i > 0) {//比较i-1位置和i位置的值，取最大
-                mosts[i] = Math.max(mosts[i - 1], mosts[i]);
+                dp[i] = Math.max(dp[i - 1], dp[i]);
             }
             //每次都更新异或和位置，map中存放最后一次异或和为零的位置
             map.put(xor, i);
-            ans = Math.max(ans, mosts[i]);
         }
-        return ans;
+        return dp[dp.length-1];
     }
 
     // for test

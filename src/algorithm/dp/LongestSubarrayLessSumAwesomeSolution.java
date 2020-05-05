@@ -65,6 +65,13 @@ public class LongestSubarrayLessSumAwesomeSolution {
             //更新最长子数组的长度
             res = Math.max(end - i, res);
             end = Math.max(end, i + 1);
+
+            //另一种写法
+//            if(end>i){
+//                sum -= arr[i];
+//            }else {
+//                end=i+1;
+//            }
         }
         return res;
     }
